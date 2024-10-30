@@ -133,9 +133,9 @@ button{
     color: #555;
 }
 
-/* About ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ä¿®æ­£ */
+
 .section-style {
-    text-align: left;    /* å·¦å¯„ã›è¨­å®š */
+    text-align: left; 
 }
 	.section-style > div{
 		margin: 0 auto;
@@ -210,6 +210,10 @@ button{
 
 .button-area{
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 	
 	.button-area button {
@@ -298,6 +302,11 @@ button{
 	    color: #333;
 	    margin-bottom: 0;
 	}
+		@media (max-width: 768px) {
+		    .more-info h3 {
+	    		font-size: 17px;
+			}
+		}
 
 	.more-info p {
 	    font-size: 13px;
@@ -311,25 +320,40 @@ button{
 	    font-weight: 700;
 	    text-align: center;
 	    color: #2c3e50;
-	    background: linear-gradient(135deg, #2187ff, #50e3c2);
+	    background: linear-gradient(135deg, #4a90e2, #50e3c2);
 	    -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
-	    margin-bottom: 20px;
-	    letter-spacing: 2px;
-	    text-transform: uppercase;
-	    position: relative;
-	    display: inline-block;
-	    width:100%;
 	    margin-bottom: 100px;
+	    letter-spacing: 1px;
+	    width: 100%;
+	    box-sizing: border-box;
+	    word-break: keep-all;
+	    overflow-wrap: break-word;
+	    white-space: pre-line;
 	}
+
 		.about-title div{
 			text-align: left;
 			width: 465px;
 			margin: 0 auto;
 		}
-		.about-title>span>span{
+		.about-title-line2{
 			display: block;
 			margin-left: 10%;
+		}
+		@media (max-width: 768px) {
+		    .about-title {
+		        font-size: 18px;
+		        letter-spacing: -1px;
+		        line-height: 1.8;
+		        margin: 0 auto 60px;
+		    }
+			.about-title-line1{
+				display: block;
+			}
+			.about-title-line2{
+				margin-left: 0%;
+			}
 		}
 
 	.section-title {
@@ -402,6 +426,13 @@ button{
         font-size: 20px;
         color: #333;
     }
+		@media (max-width: 768px) {
+		    .panel h3 {
+		        font-size: 16px;
+		        letter-spacing: -1px;
+		    }
+		}
+		
 	.panel-img{
 		width: 50px;
 	}
@@ -420,6 +451,11 @@ button{
 	    padding-bottom: 5px;
 	    width: calc(100% - 10px);
 	}
+		@media (max-width: 768px) {
+		    .panel-section-title {
+	    		font-size: 28px;
+			}
+		}
 
     .card-section {
         margin-top: 20px;
@@ -436,6 +472,11 @@ button{
 	    padding-left: 30px;
         margin-bottom: 70px;
 	}
+		@media (max-width: 768px) {
+		    .ul-section {
+			    padding-left: 10px;
+			}
+		}
 
 #contact-form {
 	background: #f9f9f9;
@@ -679,21 +720,6 @@ button{
       color: #555;
     }
 
-    @media (max-width: 768px) {
-      .profile-table th,
-      .profile-table td {
-        display: block;
-        width: 100%;
-      }
-
-      .profile-table th {
-        padding: 10px 15px;
-      }
-
-      .profile-table td {
-        padding: 15px;
-      }
-    }
 
 /* 研修カリキュラム詳細ボタン */
 .accordion-header {
@@ -742,11 +768,6 @@ button{
 	  transform: translateY(0);
 	}
 
-	/* timeline-containerのマージンを調整 */
-	.timeline-container {
-	  margin-top: 0;
-	}
-	
 /* 研修カリキュラム一覧 */
 .timeline-container {
   display:none;
@@ -755,6 +776,11 @@ button{
   background: #f8f9fa;
   border-radius: 12px;
 }
+	@media (max-width: 768px) {
+	    .timeline-container {
+    		padding: 8px;
+		}
+	}
 
     .curriculum-title {
       text-align: center;
@@ -765,7 +791,7 @@ button{
       position: relative;
     }
 
-    .curriculum-title:after {
+    /*.curriculum-title:after {
       content: "";
       position: absolute;
       bottom: -10px;
@@ -774,7 +800,7 @@ button{
       width: 40px;
       height: 3px;
       background: #699dee;
-    }
+    }*/
     .curriculum-description {
 	  max-width: 800px;
 	  margin: 30px auto;
@@ -802,12 +828,17 @@ button{
 		  gap: 20px;
 		  padding: 0 24px;
 		}
-
-		.feature-points p {
-		  margin: 0;
-		  line-height: 1.8;
-		  color: #555;
-		}
+			@media (max-width: 768px) {
+			    .feature-points {
+		    		padding: 0 10px;
+				}
+			}
+			
+			.feature-points p {
+			  margin: 0;
+			  line-height: 1.8;
+			  color: #555;
+			}
 
 		.accent-point {
 		  display: inline-block;
@@ -874,16 +905,22 @@ button{
 	      position: relative;
 	    }
 
-	    .timeline-content:before {
-	      content: "";
-	      position: absolute;
-	      left: -8px;
-	      top: 20px;
-	      width: 16px;
-	      height: 16px;
-	      background: white;
-	      transform: rotate(45deg);
-	    }
+			@media (max-width: 768px) {
+			    .timeline-content {
+		    		padding: 20px 13px;
+				}
+			}
+			
+		    .timeline-content:before {
+		      content: "";
+		      position: absolute;
+		      left: -8px;
+		      top: 20px;
+		      width: 16px;
+		      height: 16px;
+		      background: white;
+		      transform: rotate(45deg);
+		    }
 
 	    .curriculum-list {
 	      list-style: none;
