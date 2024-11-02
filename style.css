@@ -718,17 +718,23 @@ button{
     }
 
     .profile-table th {
-      width: 25%;
+      width: 28%;
       background: #f8f9fa;
       text-align: left;
       font-weight: bold;
       color: #333;
+      text-align: center;
     }
 
     .profile-table td {
-      width: 75%;
+      width: 72%;
       color: #555;
     }
+		@media (max-width: 768px) {
+		    .profile-th-line{
+		    	display:block;
+		    }
+		}
 
 
 /* 研修カリキュラム詳細ボタン */
