@@ -703,7 +703,9 @@ button{
     
 .company-profile{
 }
-	
+	#ceoName{
+		width: 75px;
+	}
     .profile-table {
       width: 100%;
       border-collapse: collapse;
