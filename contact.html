@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<!-- メタ情報 -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+    <meta name="google-site-verification" content="mGLa8jl3Kj_iB1af1Zh6NSHVvcG7TOnBRVBBGchGoPw">
+	
+	<!-- favicon -->
+	<link rel="icon" href="./img/favicon.ico" id="favicon">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon-180x180.png">
+	<!-- タイトル -->
+	<title>Contact | Rings on</title>
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./js/common.js"></script>
+	<script src="./js/contact.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" href="./css/common.css">
+	<link rel="stylesheet" href="./css/contact.css">
+	<!-- FONT - RUBIK -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+	
+    <!-- ヘッダー -->
+    <header class="header">
+        <!-- ロゴ -->
+        <a href="index.html" class="logo">
+            <div class="logo-mark"></div>
+            <div class="logo-text">RINGS<br>ON</div>
+        </a>
+        
+        <!-- ヘッダー区切り線 -->
+        <div class="header-divider"></div>
+        
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="company.html" class="nav-item">COMPANY</a>
+            <a href="service.html" class="nav-item">SERVICE</a>
+            <a href="recruit.html" class="nav-item">RECRUIT</a>
+            <a href="contact.html" class="nav-item active">CONTACT</a>
+        </nav>
+        
+        <!-- 採用Entryボタン -->
+        <div class="entry-button-container">
+            <a href="recruit.html#entry" class="entry-button">
+                <span>採用Entry</span>
+                <div class="entry-button-circle">
+                    <svg class="entry-button-arrow" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15" cy="15" r="15" fill="white"/>
+                        <path d="M12,9 L21,15 L12,21 Z" fill="#e9910a" stroke="none"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </header>
+    
+    <!-- 背景円アニメーション (topページと同様) -->
+    <div class="circle-container-body">
+	    <div class="circle-container-wrapper">
+	        <div class="circle-container">
+	            <!-- 固定の円 -->
+	            <div class="circle circle-1"></div>	
+	            <div class="circle circle-2"></div>
+	            <div class="circle circle-3"></div>
+	            
+	            <!-- 回転するマーカー -->
+	            <!-- 一番外側の円のマーカー -->
+	            <div class="marker marker-1-1"></div>
+	            <div class="marker marker-1-2"></div>
+	            <div class="marker marker-1-3"></div>
+	            
+	            <!-- 中間の円のマーカー -->
+	            <div class="marker marker-2-1"></div>
+	            <div class="marker marker-2-2"></div>
+	            <div class="marker marker-2-3"></div>
+	            
+	            <!-- 一番内側の円のマーカー -->
+	            <div class="marker marker-3-1"></div>
+	            <div class="marker marker-3-2"></div>
+	            <div class="marker marker-3-3"></div>
+	        </div>
+	    </div>
+    </div>
+    
+    <main>
+        <!-- メインビジュアル＆タイトル -->
+        <div class="title">
+            <h1>
+                <div>CONTACT</div>
+                <span>お問い合わせ</span>
+            </h1>
+        </div>
+        
+        <!-- CONTACT USセクション -->
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-content">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">CONTACT US</div>
+                            <div class="service-sub">お問い合わせ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-message">
+                        <h2 class="contact-title">お気軽にお問い合わせください</h2>
+                        <p class="contact-description">
+                            業務提携やサービス、採用に関するご相談など、<br>
+                            お気軽にお問い合わせください。
+                        </p>
+                    </div>
+                    
+                    <!-- お問い合わせフォーム -->
+                    <div id="alert_message" style="display: none;">
+                        <div></div>
+                    </div>
+                    
+                    <form id="contact-form" method="POST">
+                        <!-- プルダウンメニュー -->
+                        <div class="form-group required-input">
+                            <label for="inquiry-type">お問い合わせ種別</label>
+                            <select id="inquiry-type" name="inquiry-type" required>
+                                <option value="" disabled selected>選択してください</option>
+                                <option value="採用お問い合わせ(エンジニア)">採用お問い合わせ(システムエンジニア)</option>
+                                <option value="採用お問い合わせ(未経験者)">採用お問い合わせ(未経験者)</option>
+                                <option value="採用お問い合わせ(営業)">採用お問い合わせ(営業)</option>
+                                <option value="業務提携のお問い合わせ">業務提携のお問い合わせ</option>
+                                <option value="その他お問い合わせ">その他お問い合わせ</option>
+                            </select>
+                        </div>
+                        
+                        <!-- 氏名 -->
+                        <div class="form-group required-input">
+                            <label for="name">氏名</label>
+                            <input type="text" id="name" name="name" placeholder="お名前を入力してください" required>
+                        </div>
+                        
+                        <!-- メールアドレス -->
+                        <div class="form-group required-input">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" name="_replyto" placeholder="example@example.com" required>
+                        </div>
+                        
+                        <!-- 企業名 -->
+                        <div class="form-group">
+                            <label for="company">企業名</label>
+                            <input type="text" id="company" name="company" placeholder="企業名を入力してください">
+                        </div>
+                        
+                        <!-- お問い合わせ内容 -->
+                        <div class="form-group required-input">
+                            <label for="message">お問い合わせ内容</label>
+                            <textarea id="message" name="message" placeholder="お問い合わせ内容を入力してください" required></textarea>
+                        </div>
+                        
+                        <!-- 送信ボタン -->
+                        <div class="contact-button-container">
+                            <button id="contact-button" type="submit">
+                                <span class="contact-button-text">送信する</span>
+                                <span class="button-circle">
+                                    <svg class="button-arrow-svg" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="15" cy="15" r="15" fill="white"/>
+                                        <path d="M12,9 L21,15 L12,21 Z" fill="#e9910a" stroke="none"/>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 会社情報セクション
+        <section class="company-info-section">
+            <div class="company-info-container">
+                <div class="info-box">
+                    <h3>会社所在地</h3>
+                    <p>
+                        〒100-0001<br>
+                        東京都千代田区丸の内1-1-1<br>
+                        リングスオンビル 8階
+                    </p>
+                </div>
+                <div class="info-box">
+                    <h3>アクセス</h3>
+                    <p>
+                        東京駅 丸の内北口より徒歩5分<br>
+                        大手町駅 A2出口より徒歩3分
+                    </p>
+                </div>
+                <div class="info-box">
+                    <h3>営業時間</h3>
+                    <p>
+                        平日 9:00〜18:00<br>
+                        (土日祝日休業)
+                    </p>
+                </div>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div class="map-overlay">
+                        <p>Google Map</p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
+    
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- ロゴとタグライン部分 -->
+            <div class="footer-brand">
+                <div class="footer-logo">Ring on<sup>®</sup></div>
+                <div class="footer-tagline">
+                    従業員満足度の向上が、会社の成長に繋がる
+                </div>
+            </div>
+            
+            <!-- ナビゲーションメニュー部分 -->
+            <div class="footer-nav-container">
+                <!-- COMPANY -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">COMPANY</h3>
+                    <ul class="footer-nav-links">
+                        <li><a href="company.html">私たちについて</a></li>
+                        <li><a href="company.html#ceo-message">代表メッセージ</a></li>
+                        <li><a href="company.html#company-profile">会社概要</a></li>
+                    </ul>
+                </div>
+                
+                <!-- SERVICE -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">SERVICE</h3>
+                    <ul class="footer-nav-links">
+                        <li><a href="service.html">事業紹介</a></li>
+                        <li><a href="service.html#our-strengths">私たちの強み・特長</a></li>
+                        <li><a href="service.html#contact-us">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- RECRUIT -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">RECRUIT</h3>
+                    <ul class="footer-nav-links">
+	                    <li><a href="recruit.html#philosophy">理念</a></li>
+	                    <li><a href="recruit.html#compensation">制度</a></li>
+	                    <li><a href="recruit.html#support">サポート体制</a></li>
+	                    <li><a href="recruit.html#benefit">福利厚生</a></li>
+	                    <li><a href="recruit.html#company-stats">数字で見るリングスオン</a></li>
+	                    <li><a href="recruit.html#ceo-message">代表メッセージ</a></li>
+	                    <li><a href="recruit.html#entry">エントリー</a></li>
+                    </ul>
+                </div>
+                
+                <!-- CONTACT -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">CONTACT</h3>
+                    <ul class="footer-nav-links">
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッターボトム部分（ポリシーリンクなど） -->
+        <div class="footer-bottom">
+	        <!-- <div class="footer-policies">
+	            <a href="#" class="policy-link">プライバシーポリシー</a>
+	            <a href="#" class="policy-link">サイトポリシー</a>
+	            <a href="#" class="policy-link">一般事業主行動計画</a>
+	            <a href="#" class="policy-link">労働者派遣事業に係る情報提供</a>
+	        </div> -->
+            
+            <div class="footer-copyright">
+                <p>&copy; 2025 Rings on Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

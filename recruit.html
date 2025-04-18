@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<!-- メタ情報 -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+    <meta name="google-site-verification" content="mGLa8jl3Kj_iB1af1Zh6NSHVvcG7TOnBRVBBGchGoPw">
+	
+	<!-- favicon -->
+	<link rel="icon" href="./img/favicon.ico" id="favicon">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon-180x180.png">
+	
+	<!-- タイトル -->
+	<title>Recruit | Rings on</title>
+	
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="./js/common.js"></script>
+	<script src="./js/recruit.js"></script>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="./css/common.css">
+	<link rel="stylesheet" href="./css/recruit.css">
+	
+	<!-- FONT - RUBIK -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <!-- ロゴ -->
+        <a href="index.html" class="logo">
+            <div class="logo-mark"></div>
+            <div class="logo-text">RINGS<br>ON</div>
+        </a>
+        
+        <!-- ヘッダー区切り線 -->
+        <div class="header-divider"></div>
+        
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="company.html" class="nav-item">COMPANY</a>
+            <a href="service.html" class="nav-item">SERVICE</a>
+            <a href="recruit.html" class="nav-item active">RECRUIT</a>
+            <a href="contact.html" class="nav-item">CONTACT</a>
+        </nav>
+        
+        <!-- 採用Entryボタン -->
+        <div class="entry-button-container">
+            <a href="#entry" class="entry-button">
+                <span>採用Entry</span>
+                <div class="entry-button-circle">
+                    <svg class="entry-button-arrow" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15" cy="15" r="15" fill="white"/>
+                        <path d="M12,9 L21,15 L12,21 Z" fill="#e9910a" stroke="none"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </header>
+    
+    <!-- 背景円アニメーション -->
+    <div class="circle-container-body">
+	    <div class="circle-container-wrapper">
+	        <div class="circle-container">
+	            <!-- 固定の円 -->
+	            <div class="circle circle-1"></div>	
+	            <div class="circle circle-2"></div>
+	            <div class="circle circle-3"></div>
+	            
+	            <!-- 回転するマーカー -->
+	            <div class="marker marker-1-1"></div>
+	            <div class="marker marker-1-2"></div>
+	            <div class="marker marker-1-3"></div>
+	            
+	            <div class="marker marker-2-1"></div>
+	            <div class="marker marker-2-2"></div>
+	            <div class="marker marker-2-3"></div>
+	            
+	            <div class="marker marker-3-1"></div>
+	            <div class="marker marker-3-2"></div>
+	            <div class="marker marker-3-3"></div>
+	        </div>
+	    </div>
+    </div>
+    
+    <main>
+        <!-- メインビジュアル＆タイトル -->
+        <div class="title fade-in">
+	        <h1>
+	        	<div>RECRUIT</div>
+				<span>採用情報</span>
+			</h1>
+	    </div>
+        
+        <!-- フィロソフィーセクション -->
+        <section class="philosophy-section" id="philosophy">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">PHILOSOPHY</div>
+                            <div class="service-sub">理念</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="main-message shine">
+			        従業員満足度の向上が、<br>
+			        会社の成長に繋がると考えております
+                </h2>
+                <p class="sub-message">
+			        To create growth through employee satisfaction,<br>
+			        for a company we can all be proud of.
+                </p>
+                
+                <div class="philosophy-content">
+                    <div class="philosophy-text fade-in">
+                        <p>
+                            エンジニアの価値を最大限に尊重し、業界最高水準の給与還元を実現。<br>
+                            単価の80%以上を還元し、エンジニアの努力と成果を正当に評価し、<br>
+                            案件選択制や映画・ジム・カフェ等の割引制度、年間休日140日などの働きやすさを創造しています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+		    <div class="background-text">Rings<br>on</div>
+        </section>
+        
+		<!-- COMPENSATION セクション -->
+		<section class="compensation-section" id="compensation">
+		    <div class="section-container">
+		        <div class="section-header">
+		            <div class="service-bar">
+		                <div class="service-bar-line"></div>
+		                <div>
+		                    <div class="service-label">COMPENSATION</div>
+		                    <div class="service-sub">制度</div>
+		                </div>
+		            </div>
+		        </div>
+		        
+		        <!-- 基本制度パネル -->
+		        <div class="main-panel-body">
+			        <div class="compensation-main-panel">
+			            <div class="main-panel-content">
+			                <div class="main-panel-text">
+			                    <h3 class="main-panel-title">単価の<span class="highlight">80%</span>を給与還元</h3>
+			                    <p class="main-panel-subtitle">BASE COMPENSATION</p>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+		        
+		        <!-- 還元率アップ関連パネル -->
+		        <div class="compensation-sub-heading">
+		            <h3 class="sub-heading-title">還元率<span class="highlight">アップ</span>制度</h3>
+		            <div class="sub-heading-line"></div>
+		        </div>
+		        
+		        <div class="compensation-grid">
+		            <div class="compensation-panel">
+		                <div class="panel-icon increase-icon"></div>
+		                <h4 class="panel-title">増員ごとに</h4>
+		                <div class="panel-percentage">+1<span class="percentage">%</span></div>
+		                <p class="panel-description">社員/BPを増員いただけた際には、増員数ごとに還元率UP</p>
+		            </div>
+		            
+		            <div class="compensation-panel">
+		                <div class="panel-icon referral-icon"></div>
+		                <h4 class="panel-title">リファラル採用ごとに</h4>
+		                <div class="panel-percentage">+1<span class="percentage">%</span></div>
+		                <p class="panel-description">ご紹介いただいた方の採用ごとに還元率UP</p>
+		            </div>
+		            
+		            <div class="compensation-panel">
+		                <div class="panel-icon continuity-icon"></div>
+		                <h4 class="panel-title">現場継続年数ごとに</h4>
+		                <div class="panel-percentage">+1<span class="percentage">%</span></div>
+		                <p class="panel-description">現場継続年数が1年経過するごとに還元率UP</p>
+		            </div>
+		            
+		            <div class="compensation-panel">
+		                <div class="panel-icon flow-icon"></div>
+		                <h4 class="panel-title">商流アップしたら</h4>
+		                <div class="panel-percentage">+20<span class="percentage">%</span></div>
+		                <p class="panel-description">参画中の現場にて商流階層をアップいただけた際に追加還元</p>
+		            </div>
+		        </div>
+		    </div>
+		</section>
+        
+        <!-- サポート体制セクション -->
+		<section class="support-section" id="support">
+		    <div class="section-container">
+		        <div class="section-header">
+		            <div class="service-bar">
+		                <div class="service-bar-line"></div>
+		                <div>
+		                    <div class="service-label">SUPPORT</div>
+		                    <div class="service-sub">サポート体制</div>
+		                </div>
+		            </div>
+		        </div>
+		        
+		        <div class="support-flow-container">
+		            <!-- フロー図 -->
+		            <div class="support-flow-diagram">
+		                <!-- パネル1 -->
+		                <div class="support-panel" id="support-panel-1">
+		                    <div class="panel-number">01</div>
+		                    <div class="panel-icon onboarding-icon"></div>
+		                    <h3 class="panel-title">案件選択制</h3>
+		                    <p class="panel-description">
+		                        案件情報は全て公開。
+		                        目指すキャリアの実現やご希望の働き方実現に向けて
+								案件を自由に選ぶことができます。
+		                    </p>
+		                </div>
+		                
+		                <!-- 接続線1 -->
+		                <div class="connection-line line-1">
+		                    <svg width="100%" height="100%" preserveAspectRatio="none">
+		                        <path d="M0,50 C50,50 50,50 100,50" stroke="#ff9900" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+		                        <circle cx="100" cy="50" r="6" fill="#ff9900" />
+		                    </svg>
+		                </div>
+		                
+		                <!-- パネル2 -->
+		                <div class="support-panel" id="support-panel-2">
+		                    <div class="panel-number">02</div>
+		                    <div class="panel-icon ongoing-icon"></div>
+		                    <h3 class="panel-title">案件切替自由</h3>
+		                    <p class="panel-description">
+		                        目指すキャリアや働き方実現に向けて
+								参画後に案件を切り替えることも自由に行うことができます。
+		                    </p>
+		                </div>
+		                
+		                <!-- 接続線2 -->
+		                <div class="connection-line line-2">
+		                    <svg width="100%" height="100%" preserveAspectRatio="none">
+		                        <path d="M0,50 C50,50 50,50 100,50" stroke="#ff9900" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+		                        <circle cx="100" cy="50" r="6" fill="#ff9900" />
+		                    </svg>
+		                </div>
+		                
+		                <!-- パネル3 -->
+		                <div class="support-panel" id="support-panel-3">
+		                    <div class="panel-number">03</div>
+		                    <div class="panel-icon growth-icon"></div>
+		                    <h3 class="panel-title">定期ヒアリング</h3>
+		                    <p class="panel-description">
+		                        定期的に現場状況や本音をヒアリング。
+		                        営業との1on1面談もいつでも自由に組むことができます。
+		                    </p>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="background-text-support">SUPPORT</div>
+		</section>
+        
+		<!-- BENEFIT セクション -->
+		<section class="benefit-section" id="benefit">
+		    <div class="section-container">
+	        
+	            <div class="benefit-container">
+		        	<!-- 画像 -->
+		        	<div class="benefit-img"></div>
+			        <div class="benefit-grid">
+				        <div class="section-header">
+				            <div class="service-bar">
+				                <div class="service-bar-line"></div>
+				                <div>
+				                    <div class="service-label">BENEFIT</div>
+				                    <div class="service-sub">福利厚生</div>
+				                </div>
+				            </div>
+				        </div>
+				        <div class="benefit-items">
+					        <!-- 福利厚生項目1 -->
+					        <div class="benefit-item">
+					            <div class="benefit-item-inner">
+					                <h3 class="benefit-title">割引制度</h3>
+					                <p class="benefit-subtitle">Discount Program</p>
+					                <p class="benefit-description">コンビニ、カフェ、旅行、育児、映画、ジム、美容など、日常的に活用するサービスの割引を受けられる福利厚生を用意しております</p>
+					            </div>
+					        </div>
+					        
+					        <!-- 福利厚生項目2 -->
+					        <div class="benefit-item">
+					            <div class="benefit-item-inner">
+					                <h3 class="benefit-title">年間休日140日</h3>
+					                <p class="benefit-subtitle">140 Days Off Per Year</p>
+					                <p class="benefit-description">一般的な休暇制度に加え、スキルアップ休暇、リフレッシュ休暇を設けており、より働きやすい制度作りに注力しております</p>
+					            </div>
+					        </div>
+					        
+					        <!-- 福利厚生項目4 -->
+					        <div class="benefit-item">
+					            <div class="benefit-item-inner">
+					                <h3 class="benefit-title">透明性(案件、会社の数字を公開)</h3>
+					                <p class="benefit-subtitle">Financial and Project Transparency</p>
+					                <p class="benefit-description">案件情報は全て公開し参画案件を決めていきます。また、売上～利益、経費に至る全ての会社の数字を公開しており、会社の状況を把握することができます。</p>
+					            </div>
+					        </div>
+					        
+					        <!-- 福利厚生項目5 -->
+					        <div class="benefit-item">
+					            <div class="benefit-item-inner">
+					                <h3 class="benefit-title">スキルアップ支援</h3>
+					                <p class="benefit-subtitle">Professional Development</p>
+					                <p class="benefit-description">試験費用と参考書代を全額支給し、学習の機会を積極的にサポートしています。</p>
+					            </div>
+					        </div>
+					        
+					        <!-- 福利厚生項目6 -->
+					        <div class="benefit-item">
+					            <div class="benefit-item-inner">
+					                <h3 class="benefit-title">副業可・独立支援制度</h3>
+					                <p class="benefit-subtitle">Side Business & Independence Support</p>
+					                <p class="benefit-description">申請不要で副業に取り組むことができ、独立された方にも独立後の業務支援に貢献させていただきます。</p>
+					            </div>
+					        </div>
+					        
+					        <div class="benefit-item">
+					            <div class="benefit-item-inner">
+					                <h3 class="benefit-title">社内イベント</h3>
+					                <p class="benefit-subtitle">Events</p>
+					                <p class="benefit-description">参加費無料、自由参加型の食事会を開催しており、気軽にご参加いただけますと幸いです。</p>
+					            </div>
+					        </div>
+				        </div>
+				    </div>
+			    </div>
+		    </div>
+		</section>
+        
+        <!-- 数字で見るRings on セクション -->
+        <section class="company-stats-section" id="company-stats">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">COMPANY STATS</div>
+                            <div class="service-sub">数字で見るリングスオン</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-chart">
+                        <h3>平均残業時間</h3>
+                        <canvas id="overtimeChart"></canvas>
+                    </div>
+                    
+                    <div class="stat-chart">
+                        <h3>リモートワーク実施率</h3>
+                        <canvas id="remoteWorkChart"></canvas>
+                    </div>
+                    
+                    <div class="stat-chart">
+                        <h3>エンジニア経験年数</h3>
+                        <canvas id="engineerExperienceChart"></canvas>
+                    </div>
+                    
+                    <div class="stat-chart">
+                        <h3>エンジニアポジション</h3>
+                        <canvas id="engineerPositionChart"></canvas>
+                    </div>
+                    
+                    <div class="stat-chart">
+                        <h3>エンジニアスキル</h3>
+                        <canvas id="engineerSkillChart"></canvas>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <h3>年齢構成</h3>
+                        <div class="age-distribution">
+                            <div class="age-bar">
+                                <span>20代</span>
+                                <div class="bar" style="width: 40%;">40%</div>
+                            </div>
+                            <div class="age-bar">
+                                <span>30代</span>
+                                <div class="bar" style="width: 50%;">50%</div>
+                            </div>
+                            <div class="age-bar">
+                                <span>40代</span>
+                                <div class="bar" style="width: 10%;">10%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-chart">
+                        <h3>男女比</h3>
+                        <canvas id="genderRatioChart"></canvas>
+                    </div>
+                    
+                    <div class="stat-chart hide">
+                        <h3>売上実績・計画</h3>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    
+                    <div class="stat-chart">
+                        <h3>採用計画</h3>
+                        <canvas id="recruitmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CEO MESSAGEセクション -->
+        <section class="ceo-section" id="ceo-message">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">CEO MESSAGE</div>
+                            <div class="service-sub">代表メッセージ</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ceo-content">
+                    <!--<div class="ceo-image"></div>-->
+                    <div class="ceo-message">
+                        <div class="border-liner">
+                            リングスオンを立ち上げた理由は、<br>IT業界における「高単価・低還元」という構造的な課題に挑戦するためです。<br>
+                            私自身がエンジニアとして長年働く中で、<br>実際の現場で働く人々に適切な還元がなされていないことを肌で感じてきました。
+                        	<br><br>
+                            「単価の80%以上を給与還元」という業界最高水準の報酬体系を実現することで、<br>
+                            技術者の方々が自分の価値に見合った正当な評価を受け、<br>誇りを持って働ける環境を創り出したいと考えています。
+                        	<br><br>
+                            私たちにとって、仕事は生きるためのツールのひとつ、<br>
+                            それが人生ではないととらえております。
+                        	<br><br>
+                            案件選択の自由や充実した福利厚生を通じて、社員一人ひとりのキャリア構築を支援し、<br>
+                            技術力の向上と人間的な成長の両面をサポートする会社づくりを目指しています。
+                        	<br><br>
+                            リングスオンは「従業員満足度の向上が会社の成長に繋がる」という信念のもと、<br>
+                            誰もが誇りを持って働ける会社を皆さんと共に創り上げていきたいと考えております。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+		<div class="entry-scrolling-text">
+			<ul>
+				<li class="">Rings on</li>
+				<li class="">Rings on</li>
+				<li class="">Rings on</li>
+				<li class="">Rings on</li>
+				<li class="">Rings on</li>
+			</ul>
+		</div>
+		
+        <!-- エントリーセクション -->
+        <section class="entry-section" id="entry">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">ENTRY</div>
+                            <div class="service-sub">採用エントリー</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="entry-content">
+                    <h2>30秒で完了！採用エントリー</h2>
+                    <p>
+                        エンジニアの未来を共に創る、最高の選択肢。<br>
+                        あなたの可能性を最大限に引き出す環境が待っています。
+                    </p>
+                    
+		            <div id="alert_message" style="display: none;">
+		                <div></div>
+		            </div>
+		            
+                    <form id="recruit-entry-form" method="POST">
+                        <div class="form-group">
+                            <label for="entry-name">お名前</label>
+                            <input type="text" id="entry-name" name="name" required placeholder="例：山田 太郎">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="entry-email">メールアドレス</label>
+                            <input type="email" id="entry-email" name="email" required placeholder="例：example@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="entry-type">エントリー区分</label>
+                            <select id="entry-type" name="entry-type" required>
+                                <option value="" disabled selected>選択してください</option>
+                                <option value="システムエンジニア">システムエンジニア</option>
+                                <option disabled value="未経験者研修">未経験者研修(募集期間外)</option>
+                                <option disabled value="営業">営業</option>
+                                <option disabled value="その他">その他</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="entry-message">ご希望・メッセージ(任意)</label>
+                            <textarea id="entry-message" name="message" placeholder="キャリアへのお気持ちや、ご質問などございましたらご記入ください"></textarea>
+                        </div>
+                        
+                        <div class="entry-button-container">
+                            <button type="submit" class="entry-button" id="post-entry-button">
+                                <span>エントリーする</span>
+                                <div class="entry-button-circle">
+                                    <svg class="entry-button-arrow" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="15" cy="15" r="15" fill="white"/>
+                                        <path d="M12,9 L21,15 L12,21 Z" fill="#e9910a" stroke="none"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- ロゴとタグライン部分 -->
+            <div class="footer-brand">
+                <div class="footer-logo">Ring on<sup>®</sup></div>
+                <div class="footer-tagline">
+                    従業員満足度の向上が、会社の成長に繋がる
+                </div>
+            </div>
+            
+            <!-- ナビゲーションメニュー部分 -->
+            <div class="footer-nav-container">
+                <!-- COMPANY -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">COMPANY</h3>
+                    <ul class="footer-nav-links">
+                        <li><a href="company.html">私たちについて</a></li>
+                        <li><a href="company.html#ceo-message">代表メッセージ</a></li>
+                        <li><a href="company.html#company-profile">会社概要</a></li>
+                    </ul>
+                </div>
+                
+                <!-- SERVICE -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">SERVICE</h3>
+                    <ul class="footer-nav-links">
+                        <li><a href="service.html">事業紹介</a></li>
+                        <li><a href="service.html#our-strengths">私たちの強み・特長</a></li>
+                        <li><a href="service.html#contact-us">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- RECRUIT -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">RECRUIT</h3>
+                    <ul class="footer-nav-links">
+	                    <li><a href="recruit.html#philosophy">理念</a></li>
+	                    <li><a href="recruit.html#compensation">制度</a></li>
+	                    <li><a href="recruit.html#support">サポート体制</a></li>
+	                    <li><a href="recruit.html#benefit">福利厚生</a></li>
+	                    <li><a href="recruit.html#company-stats">数字で見るリングスオン</a></li>
+	                    <li><a href="recruit.html#ceo-message">代表メッセージ</a></li>
+	                    <li><a href="recruit.html#entry">エントリー</a></li>
+                    </ul>
+                </div>
+                
+                <!-- CONTACT -->
+                <div class="footer-nav-section">
+                    <h3 class="footer-nav-title">CONTACT</h3>
+                    <ul class="footer-nav-links">
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッターボトム部分 -->
+        <div class="footer-bottom">
+	        <!-- <div class="footer-policies">
+	            <a href="#" class="policy-link">プライバシーポリシー</a>
+	            <a href="#" class="policy-link">サイトポリシー</a>
+	            <a href="#" class="policy-link">一般事業主行動計画</a>
+	            <a href="#" class="policy-link">労働者派遣事業に係る情報提供</a>
+	        </div> -->
+            
+            <div class="footer-copyright">
+                <p>&copy; 2025 Rings on Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- チャートスクリプト -->
+    <script>
+        
+    </script>
+</body>
+</html>

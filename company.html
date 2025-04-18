@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<!-- メタ情報 -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+    <meta name="google-site-verification" content="mGLa8jl3Kj_iB1af1Zh6NSHVvcG7TOnBRVBBGchGoPw">
+	
+	<!-- favicon -->
+	<link rel="icon" href="./img/favicon.ico" id="favicon">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon-180x180.png">
+	<!-- タイトル -->
+	<title>Company | Rings on</title>
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./js/common.js"></script>
+	<script src="./js/company.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" href="./css/common.css">
+	<link rel="stylesheet" href="./css/company.css">
+	<!-- FONT - RUBIK -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+	
+</head>
+<body>
+	
+    <!-- ヘッダー -->
+    <header class="header">
+        <!-- ロゴ -->
+        <a href="index.html" class="logo">
+            <div class="logo-mark"></div>
+            <div class="logo-text">RINGS<br>ON</div>
+        </a>
+        
+        <!-- ヘッダー区切り線 -->
+        <div class="header-divider"></div>
+        
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="company.html" class="nav-item active">COMPANY</a>
+            <a href="service.html" class="nav-item">SERVICE</a>
+            <a href="recruit.html" class="nav-item">RECRUIT</a>
+            <a href="contact.html" class="nav-item">CONTACT</a>
+        </nav>
+        
+        <!-- 採用Entryボタン -->
+        <div class="entry-button-container">
+            <a href="recruit.html#entry" class="entry-button">
+                <span>採用Entry</span>
+                <div class="entry-button-circle">
+                    <svg class="entry-button-arrow" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15" cy="15" r="15" fill="white"/>
+                        <path d="M12,9 L21,15 L12,21 Z" fill="#e9910a" stroke="none"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </header>
+    
+    <!-- 背景円アニメーション (topページと同様) -->
+    <div class="circle-container-body">
+	    <div class="circle-container-wrapper">
+	        <div class="circle-container">
+	            <!-- 固定の円 -->
+	            <div class="circle circle-1"></div>	
+	            <div class="circle circle-2"></div>
+	            <div class="circle circle-3"></div>
+	            
+	            <!-- 回転するマーカー -->
+	            <!-- 一番外側の円のマーカー -->
+	            <div class="marker marker-1-1"></div>
+	            <div class="marker marker-1-2"></div>
+	            <div class="marker marker-1-3"></div>
+	            
+	            <!-- 中間の円のマーカー -->
+	            <div class="marker marker-2-1"></div>
+	            <div class="marker marker-2-2"></div>
+	            <div class="marker marker-2-3"></div>
+	            
+	            <!-- 一番内側の円のマーカー -->
+	            <div class="marker marker-3-1"></div>
+	            <div class="marker marker-3-2"></div>
+	            <div class="marker marker-3-3"></div>
+	        </div>
+	    </div>
+    </div>
+    
+    <main>
+        <!-- メインビジュアル＆タイトル -->
+        <div class="title fade-in">
+	        <h1>
+	        	<div>COMPANY</div>
+				<span>企業情報</span>
+			</h1>
+	    </div>
+        
+        <!-- ABOUT USセクション -->
+        <section class="about-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">ABOUT US</div>
+                            <div class="service-sub">私たちについて</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="main-message shine">
+                    従業員満足度の向上が、<br>
+                    会社の成長に繋がると考えております
+                </h2>
+                <p class="sub-message">
+                    To create growth through employee satisfaction,<br>
+                    for a company we can all be proud of.
+                </p>
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <span>
+                            私たちは「従業員満足度の向上が、会社の成長に繋がる」という理念のもと、
+							<br>
+                            業界最高水準の給与還元率と充実した福利厚生を提供し、
+							<br>
+                            社員一人ひとりが自分のキャリアを主体的に構築できる環境づくりに取り組んでいます。
+                        </span>
+                    </div>
+                </div>
+            </div>
+		    <div class="background-text">ABOUT<br>US</div>
+        </section>
+        
+        <!-- CEO MESSAGEセクション -->
+        <section class="ceo-section" id="ceo-message">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">CEO MESSAGE</div>
+                            <div class="service-sub">代表メッセージ</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ceo-content">
+                    <!--<div class="ceo-image"></div>-->
+                    <div class="ceo-message">
+                        <div class="border-liner">
+                            リングスオンを立ち上げた理由は、<br>IT業界における「高単価・低還元」という構造的な課題に挑戦するためです。<br>
+                            私自身がエンジニアとして長年働く中で、<br>実際の現場で働く人々に適切な還元がなされていないことを肌で感じてきました。
+                        	<br><br>
+                            「単価の80%以上を給与還元」という業界最高水準の報酬体系を実現することで、<br>
+                            技術者の方々が自分の価値に見合った正当な評価を受け、<br>誇りを持って働ける環境を創り出したいと考えています。
+                        	<br><br>
+                            私たちにとって、仕事は生きるためのツールのひとつ、<br>
+                            それが人生ではないととらえております。
+                        	<br><br>
+                            案件選択の自由や充実した福利厚生を通じて、社員一人ひとりのキャリア構築を支援し、<br>
+                            技術力の向上と人間的な成長の両面をサポートする会社づくりを目指しています。
+                        	<br><br>
+                            リングスオンは「従業員満足度の向上が会社の成長に繋がる」という信念のもと、<br>
+                            誰もが誇りを持って働ける会社を皆さんと共に創り上げていきたいと考えております。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- COMPANY PROFILEセクション -->
+        <section class="profile-section" id="company-profile">
+        	<div class="profile-image"></div>
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">COMPANY PROFILE</div>
+                            <div class="service-sub">会社概要</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-content">
+                    <table class="profile-table">
+                        <tr>
+                            <th>会社名</th>
+                            <td>リングスオン株式会社</td>
+                        </tr>
+                        <tr>
+                            <th>代表取締役</th>
+                            <td class="ceo-name"></td>
+                        </tr>
+                        <tr>
+                            <th>設立</th>
+                            <td>2025年3月</td>
+                        </tr>
+                        <tr>
+                            <th>資本金</th>
+                            <td>300,000円</td>
+                        </tr>
+                        <tr>
+                            <th>売上高</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>従業員数</th>
+                            <td>3名 (2025/5/1 現在)</td>
+                        </tr>
+                        <tr>
+                            <th>事業内容</th>
+                            <td>システムエンジニアリング<br>IT経営コンサルティング<br>未経験プログラマー研修</td>
+                        </tr>
+                        <tr>
+                            <th>顧問税理士</th>
+                            <td>ベンチャーサポートグループ</td>
+                        </tr>
+                        <tr>
+                            <th>顧問社会保険労務士</th>
+                            <td>ベンチャーサポートグループ</td>
+                        </tr>
+                        <tr>
+                            <th>取引銀行</th>
+                            <td>GMOあおぞらネット銀行</td>
+                        </tr>
+                        <!--<tr>
+                            <th>インボイス登録番号</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>事業許可番号</th 
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>労働者派遣事業番号</th>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th>有料職業紹介番号</th>
+                            <td>-</td>
+                        </tr>-->
+                    </table>
+                </div>
+            </div>
+		    <div class="profile-background-text">
+		    	company<br>
+		    	profile
+		    </div>
+        </section>
+        
+    </main>
+    
+	<!-- フッター -->
+	<footer class="footer">
+	    <div class="footer-content">
+	        <!-- ロゴとタグライン部分 -->
+	        <div class="footer-brand">
+	            <div class="footer-logo">Ring on<sup>®</sup></div>
+	            <div class="footer-tagline">
+	                従業員満足度の向上が、会社の成長に繋がる
+	            </div>
+	        </div>
+	        
+	        <!-- ナビゲーションメニュー部分 -->
+	        <div class="footer-nav-container">
+	            <!-- COMPANY -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">COMPANY</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="company.html">私たちについて</a></li>
+	                    <li><a href="company.html#ceo-message">代表メッセージ</a></li>
+	                    <li><a href="company.html#company-profile">会社概要</a></li>
+	                </ul>
+	            </div>
+	            
+	            <!-- SERVICE -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">SERVICE</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="service.html">事業紹介</a></li>
+	                    <li><a href="service.html#our-strengths">私たちの強み・特長</a></li>
+	                    <li><a href="service.html#contact-us">お問い合わせ</a></li>
+	                </ul>
+	            </div>
+	            
+	            <!-- RECRUIT -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">RECRUIT</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="recruit.html#philosophy">理念</a></li>
+	                    <li><a href="recruit.html#compensation">制度</a></li>
+	                    <li><a href="recruit.html#support">サポート体制</a></li>
+	                    <li><a href="recruit.html#benefit">福利厚生</a></li>
+	                    <li><a href="recruit.html#company-stats">数字で見るリングスオン</a></li>
+	                    <li><a href="recruit.html#ceo-message">代表メッセージ</a></li>
+	                    <li><a href="recruit.html#entry">エントリー</a></li>
+	                </ul>
+	            </div>
+	            
+	            <!-- CONTACT -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">CONTACT</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="contact.html">お問い合わせ</a></li>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <!-- フッターボトム部分（ポリシーリンクなど） -->
+	    <div class="footer-bottom">
+	        <!-- <div class="footer-policies">
+	            <a href="#" class="policy-link">プライバシーポリシー</a>
+	            <a href="#" class="policy-link">サイトポリシー</a>
+	            <a href="#" class="policy-link">一般事業主行動計画</a>
+	            <a href="#" class="policy-link">労働者派遣事業に係る情報提供</a>
+	        </div> -->
+	        
+	        <div class="footer-copyright">
+	            <p>&copy; 2025 Rings on Inc. All Rights Reserved.</p>
+	        </div>
+	    </div>
+	</footer>
+</body>
+</html>

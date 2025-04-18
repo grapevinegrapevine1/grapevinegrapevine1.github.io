@@ -1,0 +1,220 @@
+@charset "UTF-8";
+
+/* メインコンテンツ */
+main{
+	position: relative;
+	z-index: 1;
+}
+	/* トップビューテキスト */
+	.title {
+		opacity:0;
+	    width: 50%;
+	    min-width: 720px;
+	    text-align: left;
+	    display: flex;
+	    justify-content: center;
+	}
+
+		.title h1 {
+		    color: #323232;
+		    margin-bottom: 1rem;
+		    width: 100%;
+		    padding-top: 250px;
+		    padding-left: 20px;
+		    font-size: 56px;
+		}
+
+		.title h1 span {
+		    font-size: 24px;
+		    display: block;
+		    margin-top: 10px;
+		    color: #666;
+		}
+
+	/* 背景テキスト */
+	.background-text {
+		opacity:0;
+		position: absolute;
+		top: 280px;
+		right: 10px;
+		font-size: 150px; /* サイズアップ */
+		font-weight: 900;
+		color: rgb(255 235 205 / 34%); /* やや濃いめに調整 */
+		line-height: 0.9;
+		pointer-events: none;
+		z-index: 0;
+		text-transform: uppercase;
+	}
+
+/* セクション共通スタイル */
+.section-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 60px 30px;
+    position: relative;
+}
+
+	.section-header {
+	    margin-bottom: 40px;
+	}
+
+/* ABOUT USセクション */
+.about-section {
+    margin-top: 150px;
+    padding: 0px 0 100px;
+    background: #fffaf0c9;
+    position: relative;
+}
+
+	.about-content {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+		.about-text {
+		    flex: 1;
+		    opacity: 0;
+		}
+
+		.about-text span {
+		    font-size: 18px;
+		    line-height: 2.3;
+		    margin-bottom: 20px;
+		    color: #000000;
+		}
+
+		.about-image {
+		    flex: 1;
+		    border-radius: 10px;
+		    overflow: hidden;
+		    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		    background:url(../img/company-vision.png);
+		    width: 570px;
+		    height: 300px;
+		    min-width: 570px;
+		    max-width: 570px;
+		    min-height: 300px;
+		    background-position-y: -620px;
+		    background-repeat: no-repeat;
+		    background-size: 140%;
+		    transition: transform 0.5s ease;
+		}
+
+		.about-image:hover {
+		    transform: scale(1.05);
+		}
+
+/* CEO MESSAGEセクション */
+.ceo-section {
+    padding: 100px 0 0 0;
+    background-color: #ffffff6b;
+}
+
+	.ceo-content {
+		opacity:0;
+		display: flex;
+		gap: 30px;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		flex-direction: row;
+	}
+
+		.ceo-image {
+		    flex: 0 0 35%;
+		    position: relative;
+		    background:url(../img/ceo.png);
+		    min-width: 500px;
+		    height: 450px;
+		    background-size: 900px;
+		    background-position-x: -480px;
+		    background-position-y: -150px;
+		    background-repeat: no-repeat;
+		}
+
+		.ceo-image img {
+		    width: 100%;
+		    height: auto;
+		    border-radius: 10px;
+		    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		}
+
+		.ceo-message {
+		    flex: 1;
+		    font-family: "Zen Antique", serif;
+		    padding: 40px;
+		    border-radius: 8px;
+		    width: 100%;
+		    min-width: 726px;
+		    text-align: center;
+		}
+			.ceo-message div {
+				font-size: 17px;
+				line-height: 1.8;
+				color: #333;
+				margin-bottom: 25px;
+			}
+
+/* COMPANY PROFILEセクション */
+.profile-section {
+    margin-bottom: 100px;
+    background: #fffaf0c9;
+    position: relative;
+}
+.profile-section::after {
+    content: "　";
+    position: absolute;
+    bottom: -50ox;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, #fffaf0c9, transparent);
+    pointer-events: none;
+}
+	.profile-content {
+	    max-width: 900px;
+	    opacity: 0;
+	}
+		.profile-table {
+		    width: 100%;
+		    border-collapse: collapse;
+		}
+
+		.profile-table tr {
+		    border-bottom: 1px solid #ddd;
+		}
+
+		.profile-table th {
+		    width: 30%;
+		    padding: 20px;
+		    text-align: left;
+		    font-weight: 600;
+		    color: #333;
+		    vertical-align: top;
+		}
+
+		.profile-table td {
+		    width: 70%;
+		    padding: 20px;
+		    color: #333;
+		}
+		.profile-background-text{
+		    position: absolute;
+		    top: 280px;
+		    right: 10px;
+		    font-size: 130px;
+		    font-weight: 900;
+		    color: rgba(255, 235, 205, 0.34);
+		    line-height: 0.9;
+		    pointer-events: none;
+		    z-index: 0;
+		    text-transform: uppercase;
+		}
+		.ceo-name{
+			background: url(../img/ceo-name.png);
+			background-repeat: no-repeat;
+			background-size: 71px;
+			background-position: 18px 22px;
+		}

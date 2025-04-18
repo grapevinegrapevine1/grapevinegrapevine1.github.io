@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<!-- メタ情報 -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+    <meta name="google-site-verification" content="mGLa8jl3Kj_iB1af1Zh6NSHVvcG7TOnBRVBBGchGoPw">
+	
+	<!-- favicon -->
+	<link rel="icon" href="./img/favicon.ico" id="favicon">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon-180x180.png">
+	<!-- タイトル -->
+	<title>Service | Rings on</title>
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./js/common.js"></script>
+	<script src="./js/service.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" href="./css/common.css">
+	<link rel="stylesheet" href="./css/service.css">
+	<!-- FONT - RUBIK -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+	<!-- Chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	
+    <!-- ヘッダー -->
+    <header class="header">
+        <!-- ロゴ -->
+        <a href="index.html" class="logo">
+            <div class="logo-mark"></div>
+            <div class="logo-text">RINGS<br>ON</div>
+        </a>
+        
+        <!-- ヘッダー区切り線 -->
+        <div class="header-divider"></div>
+        
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="company.html" class="nav-item">COMPANY</a>
+            <a href="service.html" class="nav-item active">SERVICE</a>
+            <a href="recruit.html" class="nav-item">RECRUIT</a>
+            <a href="contact.html" class="nav-item">CONTACT</a>
+        </nav>
+        
+        <!-- 採用Entryボタン -->
+        <div class="entry-button-container">
+            <a href="recruit.html#entry" class="entry-button">
+                <span>採用Entry</span>
+                <div class="entry-button-circle">
+                    <svg class="entry-button-arrow" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15" cy="15" r="15" fill="white"/>
+                        <path d="M12,9 L21,15 L12,21 Z" fill="#e9910a" stroke="none"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </header>
+    
+    <!-- 背景円アニメーション (topページと同様) -->
+    <div class="circle-container-body">
+	    <div class="circle-container-wrapper">
+	        <div class="circle-container">
+	            <!-- 固定の円 -->
+	            <div class="circle circle-1"></div>	
+	            <div class="circle circle-2"></div>
+	            <div class="circle circle-3"></div>
+	            
+	            <!-- 回転するマーカー -->
+	            <!-- 一番外側の円のマーカー -->
+	            <div class="marker marker-1-1"></div>
+	            <div class="marker marker-1-2"></div>
+	            <div class="marker marker-1-3"></div>
+	            
+	            <!-- 中間の円のマーカー -->
+	            <div class="marker marker-2-1"></div>
+	            <div class="marker marker-2-2"></div>
+	            <div class="marker marker-2-3"></div>
+	            
+	            <!-- 一番内側の円のマーカー -->
+	            <div class="marker marker-3-1"></div>
+	            <div class="marker marker-3-2"></div>
+	            <div class="marker marker-3-3"></div>
+	        </div>
+	    </div>
+    </div>
+    
+    <main>
+        <!-- メインビジュアル＆タイトル -->
+        <div class="title">
+	        <h1>
+	        	<div>SERVICE</div>
+				<span>事業紹介</span>
+			</h1>
+	    </div>
+        
+        <!-- OUR SERVICEセクション -->
+        <section class="service-overview-section">
+            <div class="section-container">
+				<h2 class="main-message shine">
+				    人と企業に貢献する<br>
+				    最高水準のビジネスパートナー
+				</h2>
+				<p class="sub-message">
+				    The highest standard business partner<br>
+				    contributing to people and companies.
+				</p>
+				<div class="service-overview-content">
+				    <div class="service-overview-text">
+				        <span>
+				            私たちは技術者と企業へ最高水準のサービスで還元し、
+				            人と企業の成長に貢献します。
+				            <br>
+				            システム開発から人材育成まで、
+				            お客様と共に価値を創造し、長期的な成功を伴走します。
+				        </span>
+				    </div>
+				</div>
+        </section>
+        
+        <!-- SERVICE LINEUPセクション -->
+        <section class="service-lineup-section" id="service-lineup">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">SERVICE LINEUP</div>
+                            <div class="service-sub">サービス一覧</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-lineup-body">
+	                <!-- <div class="service-lineup-image"></div> -->
+	                <div class="service-cards">
+	                    <div class="service-card" id="service-card-inner-1">
+	                        <div class="service-card-inner">
+	                            <div class="service-card-icon system-icon"></div>
+	                            <h3 class="service-card-title">システムエンジニアリング</h3>
+	                            <p class="service-card-description">
+	                                Web開発からアプリ開発など、PMやPLポジションを含むシステム開発の全工程をサポート。
+	                                クラウド環境の構築や最新技術導入など、多様なニーズに対応させていただきます。
+	                                <br>
+	                                また、1000社以上のビジネスパートナー企業を保有しており、
+	                                ＡＩビジネスマッチング技術を用いた高速な人材、案件提案を行います。
+	                            </p>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="service-card" id="service-card-inner-2">
+	                        <div class="service-card-inner">
+	                            <div class="service-card-icon consulting-icon"></div>
+	                            <h3 class="service-card-title">IT教育コンサルティング</h3>
+	                            <p class="service-card-description">
+	                                エンジニア教育において教育事業の新規構築、200名以上の排出、100%参画してきた実績から、
+	                                新規構築から運用まで、経営とITの両面から事業課題を解決いたします。<br>
+	                                再現性あるエンジニア教育事業テンプレートを用いて、
+	                                スタートからゴールまでを明確に、事業を導いていきます。
+	                            </p>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="service-card" id="service-card-inner-3">
+	                        <div class="service-card-inner">
+	                            <div class="service-card-icon training-icon"></div>
+	                            <h3 class="service-card-title">未経験プログラマー研修</h3>
+	                            <p class="service-card-description">
+	                                現場参画率100%を誇り、研修修了時点で実務経験1年レベルの実力が身に付く、
+	                                未経験者向けのエンジニア研修プログラムを無料実施。<br>
+	                                3か月間のカリキュラムでは、HTML、CSS、Java(SpringBoot)、データベース、JavaScriptを学び、
+	                                弊社エンジニアとしてのキャリアをスタートすることができます。
+	                            </p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+        </section>
+        
+        <!-- OUR STRENGTHSセクション -->
+        <section class="strengths-section" id="our-strengths">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="service-bar">
+                        <div class="service-bar-line"></div>
+                        <div>
+                            <div class="service-label">OUR STRENGTHS</div>
+                            <div class="service-sub">私たちの強み・特徴</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="strengths-grid">
+                    <!-- 採用者数推移 -->
+                    <div class="strength-panel">
+                        <h3 class="strength-title">採用計画</h3>
+                        <div class="strength-content">
+                            <div class="chart-container">
+                                <canvas id="recruitmentChart"></canvas>
+                            </div>
+                            <p class="strength-description">
+                                2025年10月から採用を加速させ、多用な人材を確保。<br>
+                                業界経験者やキャリアチェンジなど、幅広い層から採用します。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 経験年数円グラフ -->
+                    <div class="strength-panel">
+                        <h3 class="strength-title">エンジニア経験年数</h3>
+                        <div class="strength-content">
+                            <div class="chart-container">
+                                <canvas id="experienceChart"></canvas>
+                            </div>
+                            <p class="strength-description">
+                                ベテランから若手まで、バランスの取れた経験年数構成。<br>
+                                豊富な実務経験と新しい技術知識を両立しています。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- ポジション円グラフ -->
+                    <div class="strength-panel">
+                        <h3 class="strength-title">エンジニアポジション</h3>
+                        <div class="strength-content">
+                            <div class="chart-container">
+                                <canvas id="positionChart"></canvas>
+                            </div>
+                            <p class="strength-description">
+                                プロジェクトマネージャーからデベロッパーまで、<br>
+                                多様なポジションのエンジニアが在籍しています。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- スキル円グラフ -->
+                    <div class="strength-panel">
+                        <h3 class="strength-title">エンジニアスキル</h3>
+                        <div class="strength-content">
+                            <div class="chart-container">
+                                <canvas id="skillChart"></canvas>
+                            </div>
+                            <p class="strength-description">
+                                フロントエンド、バックエンド、クラウドなど、<br>
+                                幅広い技術スタックに対応可能な人材を揃えています。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 参画後のBPフォローフロー
+                <div class="bp-flow-container">
+                    <h3 class="strength-title">参画後のBPフォローフロー</h3>
+                    <div class="bp-flow-diagram fade-in">
+                        <div class="flow-step">
+                            <div class="flow-icon flow-icon-1"></div>
+                            <div class="flow-content">
+                                <h4>参画前面談</h4>
+                                <p>スキルシートや案件要件を基に、マッチング精度の高い案件を提案</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-step">
+                            <div class="flow-icon flow-icon-2"></div>
+                            <div class="flow-content">
+                                <h4>参画初日同行</h4>
+                                <p>初日は担当者が同行し、環境や人間関係の構築をサポート</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-step">
+                            <div class="flow-icon flow-icon-3"></div>
+                            <div class="flow-content">
+                                <h4>定期面談</h4>
+                                <p>月に1回以上の定期面談を実施し、課題や要望をヒアリング</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-step">
+                            <div class="flow-icon flow-icon-4"></div>
+                            <div class="flow-content">
+                                <h4>スキルアップ支援</h4>
+                                <p>キャリア目標に合わせた研修や資格取得支援を提供</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-step">
+                            <div class="flow-icon flow-icon-5"></div>
+                            <div class="flow-content">
+                                <h4>次案件提案</h4>
+                                <p>キャリアプランに沿った次の案件を提案し、継続的な成長をサポート</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+        
+        <!-- CONTACT USセクション -->
+		<section class="contact-section" id="contact-us">
+		    <div class="contact-container">
+		        <div class="contact-content">
+		            <div class="service-bar">
+		                <div class="service-bar-line"></div>
+		                <div>
+		                    <div class="service-label">CONTACT US</div>
+		                    <div class="service-sub">お問い合わせ</div>
+		                </div>
+		            </div>
+		            
+		            <div class="contact-message">
+		                <h2 class="contact-title">お気軽にお問い合わせください</h2>
+		                <p class="contact-description">
+		                    業務提携やサービス、採用に関するご相談など、<br>
+		                    お気軽にお問い合わせください。
+		                </p>
+		            </div>
+		            
+		            <!-- お問い合わせフォーム -->
+		            <div id="alert_message" style="display: none;">
+		                <div></div>
+		            </div>
+		            
+		            <form id="contact-form" method="POST">
+		                <!-- プルダウンメニュー -->
+		                <div class="form-group required-input">
+		                    <label for="inquiry-type">お問い合わせ種別</label>
+		                    <select id="inquiry-type" name="inquiry-type" required>
+		                        <option value="" disabled selected>選択してください</option>
+		                        <option value="採用お問い合わせ(エンジニア)">採用お問い合わせ(システムエンジニア)</option>
+		                        <option value="採用お問い合わせ(未経験者)">採用お問い合わせ(未経験者)</option>
+		                        <option value="採用お問い合わせ(営業)">採用お問い合わせ(営業)</option>
+		                        <option value="業務提携のお問い合わせ">業務提携のお問い合わせ</option>
+		                        <option value="その他お問い合わせ">その他お問い合わせ</option>
+		                    </select>
+		                </div>
+		                
+		                <!-- 氏名 -->
+		                <div class="form-group required-input">
+		                    <label for="name">氏名</label>
+		                    <input type="text" id="name" name="name" placeholder="お名前を入力してください" required>
+		                </div>
+		                
+		                <!-- メールアドレス -->
+		                <div class="form-group required-input">
+		                    <label for="email">メールアドレス</label>
+		                    <input type="email" id="email" name="_replyto" placeholder="example@example.com" required>
+		                </div>
+		                
+		                <!-- 企業名 -->
+		                <div class="form-group">
+		                    <label for="company">企業名</label>
+		                    <input type="text" id="company" name="company" placeholder="企業名を入力してください">
+		                </div>
+		                
+		                <!-- お問い合わせ内容 -->
+		                <div class="form-group required-input">
+		                    <label for="message">お問い合わせ内容</label>
+		                    <textarea id="message" name="message" placeholder="お問い合わせ内容を入力してください" required></textarea>
+		                </div>
+		                
+		                <!-- 送信ボタン -->
+		                <div class="contact-button-container">
+		                    <button id="contact-button" type="submit">
+		                        <span class="contact-button-text">送信する</span>
+		                        <span class="button-circle">
+		                            <svg class="button-arrow-svg" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+		                                <circle cx="15" cy="15" r="15" fill="white"/>
+		                                <path d="M12,9 L21,15 L12,21 Z" fill="#e9910a" stroke="none"/>
+		                            </svg>
+		                        </span>
+		                    </button>
+		                </div>
+		            </form>
+		        </div>
+		    </div>
+		</section>
+    </main>
+    
+	<!-- フッター -->
+	<footer class="footer">
+	    <div class="footer-content">
+	        <!-- ロゴとタグライン部分 -->
+	        <div class="footer-brand">
+	            <div class="footer-logo">Ring on<sup>®</sup></div>
+	            <div class="footer-tagline">
+	                従業員満足度の向上が、会社の成長に繋がる
+	            </div>
+	        </div>
+	        
+	        <!-- ナビゲーションメニュー部分 -->
+	        <div class="footer-nav-container">
+	            <!-- COMPANY -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">COMPANY</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="company.html">私たちについて</a></li>
+	                    <li><a href="company.html#ceo-message">代表メッセージ</a></li>
+	                    <li><a href="company.html#company-profile">会社概要</a></li>
+	                </ul>
+	            </div>
+	            
+	            <!-- SERVICE -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">SERVICE</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="service.html">事業紹介</a></li>
+	                    <li><a href="service.html#our-strengths">私たちの強み・特長</a></li>
+	                    <li><a href="service.html#contact-us">お問い合わせ</a></li>
+	                </ul>
+	            </div>
+	            
+	            <!-- RECRUIT -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">RECRUIT</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="recruit.html#philosophy">理念</a></li>
+	                    <li><a href="recruit.html#compensation">制度</a></li>
+	                    <li><a href="recruit.html#support">サポート体制</a></li>
+	                    <li><a href="recruit.html#benefit">福利厚生</a></li>
+	                    <li><a href="recruit.html#company-stats">数字で見るリングスオン</a></li>
+	                    <li><a href="recruit.html#ceo-message">代表メッセージ</a></li>
+	                    <li><a href="recruit.html#entry">エントリー</a></li>
+	                </ul>
+	            </div>
+	            
+	            <!-- CONTACT -->
+	            <div class="footer-nav-section">
+	                <h3 class="footer-nav-title">CONTACT</h3>
+	                <ul class="footer-nav-links">
+	                    <li><a href="contact.html">お問い合わせ</a></li>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <!-- フッターボトム部分（ポリシーリンクなど） -->
+	    <div class="footer-bottom">
+	        <!-- <div class="footer-policies">
+	            <a href="#" class="policy-link">プライバシーポリシー</a>
+	            <a href="#" class="policy-link">サイトポリシー</a>
+	            <a href="#" class="policy-link">一般事業主行動計画</a>
+	            <a href="#" class="policy-link">労働者派遣事業に係る情報提供</a>
+	        </div> -->
+	        
+	        <div class="footer-copyright">
+	            <p>&copy; 2025 Rings on Inc. All Rights Reserved.</p>
+	        </div>
+	    </div>
+	</footer>
+	
+    <!-- Chart.jsスクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 採用者数推移チャート
+            const recruitmentCtx = document.getElementById('recruitmentChart').getContext('2d');
+            const recruitmentChart = new Chart(recruitmentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2025年', '2026年', '2027年', '2028年', '2029年'],
+                    datasets: [{
+                        label: '採用者数',
+                        data: [4, 8, 30, 50, 80],
+                        backgroundColor: [
+                            'rgba(255, 153, 0, 0.7)',
+                            'rgba(255, 153, 0, 0.7)',
+                            'rgba(255, 153, 0, 0.7)',
+                            'rgba(255, 153, 0, 0.7)',
+                            'rgba(255, 153, 0, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 153, 0, 1)',
+                            'rgba(255, 153, 0, 1)',
+                            'rgba(255, 153, 0, 1)',
+                            'rgba(255, 153, 0, 1)',
+                            'rgba(255, 153, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // 経験年数円グラフ
+            const experienceCtx = document.getElementById('experienceChart').getContext('2d');
+            const experienceChart = new Chart(experienceCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['10年以上', '5-10年', '3-5年', '1-3年', '1年未満'],
+                    datasets: [{
+                        data: [20, 10, 10, 0, 0],
+                        backgroundColor: [
+                            'rgba(255, 153, 0, 0.9)',
+                            'rgba(255, 173, 51, 0.9)',
+                            'rgba(255, 194, 102, 0.9)',
+                            'rgba(255, 214, 153, 0.9)',
+                            'rgba(255, 235, 204, 0.9)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 153, 0, 1)',
+                            'rgba(255, 173, 51, 1)',
+                            'rgba(255, 194, 102, 1)',
+                            'rgba(255, 214, 153, 1)',
+                            'rgba(255, 235, 204, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+            
+            // ポジション円グラフ
+            const positionCtx = document.getElementById('positionChart').getContext('2d');
+            const positionChart = new Chart(positionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['PM', 'PL', '基本設計', '詳細設計', 'コーディング'],
+                    datasets: [{
+                        data: [20, 0, 10, 10, 0],
+                        backgroundColor: [
+                            'rgba(255, 153, 0, 0.9)',
+                            'rgba(255, 173, 51, 0.9)',
+                            'rgba(255, 194, 102, 0.9)',
+                            'rgba(255, 214, 153, 0.9)',
+                            'rgba(255, 235, 204, 0.9)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 153, 0, 1)',
+                            'rgba(255, 173, 51, 1)',
+                            'rgba(255, 194, 102, 1)',
+                            'rgba(255, 214, 153, 1)',
+                            'rgba(255, 235, 204, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+            
+            // スキル円グラフ
+            const skillCtx = document.getElementById('skillChart').getContext('2d');
+            const skillChart = new Chart(skillCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['フルスタック', 'クラウド', 'フロント/バック', 'バックエンド', 'テスト'],
+                    datasets: [{
+                        data: [10, 10, 20, 0, 0],
+                        backgroundColor: [
+                            'rgba(255, 153, 0, 0.9)',
+                            'rgba(255, 173, 51, 0.9)',
+                            'rgba(255, 194, 102, 0.9)',
+                            'rgba(255, 214, 153, 0.9)',
+                            'rgba(255, 235, 204, 0.9)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 153, 0, 1)',
+                            'rgba(255, 173, 51, 1)',
+                            'rgba(255, 194, 102, 1)',
+                            'rgba(255, 214, 153, 1)',
+                            'rgba(255, 235, 204, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
