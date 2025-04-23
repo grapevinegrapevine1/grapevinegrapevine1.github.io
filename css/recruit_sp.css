@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+@media (max-width: 1000px) {
+    .benefit-container {
+        flex-direction: column;
+        gap: 50px;
+    }
+	    .benefit-img {
+	        background-size: 1200px;
+	        background-position: -400px -50px;
+	        width: calc(100% - 30px);
+	        height: 300px;
+	        margin: 0 auto;
+	        margin-top: 100px;
+	    }
+	    .entry-scrolling-text li {
+		    font-size: 100px;
+		}
+	
+	.stats-grid {
+	    grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+}
+
+@media (max-width: 768px) {
+	.stats-grid {
+	    grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+    .company-pamphlet-swiper {
+        max-height: 400px; /* 最大高さを設定 */
+        min-height: 500px; /* 最大高さを設定 */
+    }
+}
+
+@media (max-width: 480px) {
+	.philosophy-text {
+		margin-top: 40px;
+	}
+	.background-text {
+		font-size: 90px;
+		top: 574px;
+		right: 41px;
+	}
+    .benefit-img {
+        background-size: 900px;
+    }
+    .transparency-sub{
+    	font-size: 18px;
+        vertical-align: text-top;
+        font-weight: 100;
+    }
+    .section-container {
+        padding: 30px 10px 30px 10px;
+    }
+    .entry-section {
+    	padding-top: 100px;
+    }
+	.stats-grid {
+	    grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
+    .company-pamphlet-swiper {
+        max-height: 200px; /* 最大高さを設定 */
+        min-height: 300px; /* 最大高さを設定 */
+    }
+}
+
+/* サポートフロー図用 */
+@media (max-width: 1100px) {
+    .support-flow-diagram {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .support-panel {
+        flex: 0 0 auto;
+        width: 90%;
+        max-width: 500px;
+    }
+    
+    .connection-line {
+        flex: 0 0 auto;
+        width: 60px;
+        height: 60px;
+        transform: rotate(90deg);
+        margin: -13px;
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .panel-number {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .panel-title {
+        font-size: 18px;
+    }
+    
+    .panel-description {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .support-panel {
+        padding: 25px 20px;
+    }
+    
+    .panel-icon {
+        width: 60px;
+        height: 60px;
+    }
+}

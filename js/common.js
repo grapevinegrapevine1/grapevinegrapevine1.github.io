@@ -23,6 +23,9 @@ function addScrollAnimation(elem, animationClassName, notHide) {
         
         // 要素が表示領域に入ったらクラスを追加
         if (distance < $(window).height() * 0.8 && distance + elemHeight > 0) {
+        	if(animationClassName == "highlight-li"){
+        		let a = 1;
+        	}
             elem.addClass(animationClassName);
             if(!notHide){
 	            setTimeout(function(){

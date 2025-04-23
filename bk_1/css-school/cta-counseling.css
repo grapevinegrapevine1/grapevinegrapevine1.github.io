@@ -1,0 +1,150 @@
+.cta-counseling {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-counseling::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0,170,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0,170,255,0.1) 0%, transparent 50%);
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    position: relative;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, #fff, #0af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.4;
+}
+
+.cta-points {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.point {
+    flex: 1;
+    max-width: 200px;
+}
+
+.point-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, rgba(0,170,255,0.1), rgba(0,170,255,0.05));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,170,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.point-icon i {
+    font-size: 2rem;
+    color: #0af;
+    transition: transform 0.3s ease;
+}
+
+.point:hover .point-icon {
+    background: linear-gradient(135deg, rgba(0,170,255,0.2), rgba(0,170,255,0.1));
+}
+
+.point:hover .point-icon i {
+    transform: scale(1.1);
+}
+
+.point p {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.cta-text {
+    color: #ddd;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, #0af, #08f);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,170,255,0.3);
+}
+
+@media (max-width: 768px) {
+    .cta-content {
+        padding: 30px;
+        margin: 0 20px;
+    }
+
+    .cta-points {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .point {
+        max-width: none;
+    }
+
+    .cta-content h2 {
+        font-size: 2rem;
+    }
+
+    .cta-button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.point {
+    animation: float 3s ease-in-out infinite;
+}
+
+.point:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.point:nth-child(3) {
+    animation-delay: 0.4s;
+}

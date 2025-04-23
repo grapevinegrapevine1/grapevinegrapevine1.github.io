@@ -1,12 +1,19 @@
 $(document).ready(function() {
     // スクロールアニメーション
     addScrollAnimation($('.title'), "fade-in", false);
-    addScrollAnimation($('.main-message'), "wipe-from-left", false);
+    
+    addScrollAnimation($('.message-container'), "wipe-from-left", false);
+    addScrollAnimation($('.philosophy-content'), "fade-in", false);
+    
     
     addScrollAnimation($('.background-text'), "slide-in-from-right", true);
     addScrollAnimation($('.background-text-support'), "slide-in-from-right", true);
     
     addScrollAnimation($('.compensation-main-panel'), "wipe-from-left", false);
+    addScrollAnimation($('.compensation-panel:nth-child(1)'), "active", false);
+    addScrollAnimation($('.compensation-panel:nth-child(2)'), "active", false);
+    addScrollAnimation($('.compensation-panel:nth-child(3)'), "active", false);
+    addScrollAnimation($('.compensation-panel:nth-child(4)'), "active", false);
     
     addScrollAnimation($('.support-section'), "fade-in", false);
     
@@ -17,7 +24,7 @@ $(document).ready(function() {
     addScrollAnimation($('.company-stats-section'), "fade-in", false);
     
     addScrollAnimation($('.ceo-content'), "fade-in", false);
-    addScrollAnimation($('.ceo-message div'), "active", false);
+    addScrollAnimation($('.ceo-message div'), "active", true);
     
     addScrollAnimation($('.entry-section'), "fade-in", false);
     
@@ -28,46 +35,88 @@ $(document).ready(function() {
 	
 	// チャート作成
 	createChart();
+	
+	
+	// ドキュメント準備完了時に初期化
+	initCompanyPamphletSlider();
 });
+
+// 会社案内スライダー初期化
+function initCompanyPamphletSlider() {
+    const pamphletSwiper = new Swiper('.company-pamphlet-swiper', {
+        // スライダーのオプション
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        centeredSlides: true,
+        effect: 'creative',
+        creativeEffect: {
+            prev: {
+                shadow: true,
+                translate: ['-20%', 0, -1],
+            },
+            next: {
+                translate: ['100%', 0, 0],
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        /*autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },*/
+    });
+}
 
 // サポートセクションフローの表示アニメーション
 $(document).ready(function() {
-    supportAnimation();
-    $(window).scroll(supportAnimation);
-    function supportAnimation() {
-        const supportSection = $('.support-section');
-        const supportOffset = supportSection.offset()?.top || 0;
-        const windowHeight = $(window).height();
-        const scrollPos = $(window).scrollTop();
-        
-        // Animate Support section when scrolled to
-        if (scrollPos > supportOffset - windowHeight * 0.8) {
-            if (!supportSection.hasClass('active')) {
-                supportSection.addClass('active');
-                
-                // Animate panels with delay
-                setTimeout(function() {
-                    $('#support-panel-1').addClass('active');
-                }, 100);
-                
-                setTimeout(function() {
-                    $('.line-1').addClass('active');
-                }, 200);
-                
-                setTimeout(function() {
-                    $('#support-panel-2').addClass('active');
-                }, 300);
-                
-                setTimeout(function() {
-                    $('.line-2').addClass('active');
-                }, 400);
-                
-                setTimeout(function() {
-                    $('#support-panel-3').addClass('active');
-                }, 500);
-            }
-        }
-    }
+	supportAnimation();
+	$(window).scroll(supportAnimation);
+	function supportAnimation() {
+	    const supportSection = $('.support-section');
+	    const supportOffset = supportSection.offset()?.top || 0;
+	    const windowHeight = $(window).height();
+	    const scrollPos = $(window).scrollTop();
+	    
+	    // スマホ表示かどうかを判定（画面幅でチェック）
+	    const isMobile = window.innerWidth <= 767; // 一般的なスマホ用ブレークポイント
+	    // スマホの場合は+150msのディレイを追加
+	    const delayOffset = isMobile ? 200 : 0;
+	    
+	    // Animate Support section when scrolled to
+	    if (scrollPos > supportOffset - windowHeight * 0.8) {
+	        if (!supportSection.hasClass('active')) {
+	            supportSection.addClass('active');
+	            
+	            // Animate panels with delay - スマホの場合は遅延を+100ms
+	            setTimeout(function() {
+	                $('#support-panel-1').addClass('active');
+	            }, 100 + delayOffset);
+	            
+	            setTimeout(function() {
+	                $('.line-1').addClass('active');
+	            }, 200 + delayOffset);
+	            
+	            setTimeout(function() {
+	                $('#support-panel-2').addClass('active');
+	            }, 300 + delayOffset);
+	            
+	            setTimeout(function() {
+	                $('.line-2').addClass('active');
+	            }, 400 + delayOffset);
+	            
+	            setTimeout(function() {
+	                $('#support-panel-3').addClass('active');
+	            }, 500 + delayOffset);
+	        }
+	    }
+	}
 });
 
 

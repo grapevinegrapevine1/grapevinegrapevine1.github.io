@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+/* モバイル対応の追加スタイル */
+@media (max-width: 1400px) {
+
+    .recruit-containt {
+		max-width: 700px;
+	}
+		.recruit-cards-container {
+	        max-width: 800px;
+	        min-width: 500px;
+	        width: 100%;
+	    }
+	/* 採用パネル */
+    .recruit-cards {
+        flex-direction: column;
+        gap: 30px;
+    }
+	    .recruit-cards > div {
+	        width: 100%;
+	    }
+	    /* 各カードグループの角丸設定をリセット */
+	    .recruit-cards > div > .recruit-card {
+	        border-radius: 5px;
+	    }
+}
+@media (max-width: 1000px) {
+	
+	.benefit-body {
+	    flex-direction: column;
+	    gap: 50px;
+	}
+		.benefit-img {
+		    background-size: 1200px;
+		    background-position: -500px -50px;
+		    width: calc(100% - 30px);
+		    height: 300px;
+		    margin-top: 100px;
+		}
+		.benefit-containt {
+		    width: 100%;
+		}
+	
+	/* 横スクロールテキスト */
+	.recruit-scrolling-text li {
+	    font-size: 100px;
+    }
+        .recruit-section {
+	        padding-top: 0px;
+	    }
+	
+    .recruit-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px 15px 0px 15px;
+        width: calc(100% - 35px);
+    }
+    
+	    .recruit-cards-container {
+	        min-width: auto;
+	        width: 100%;
+	    }
+	    .recruit-containt {
+	        max-width: 100%;
+    		height: 400px;
+    	}
+    	.recruit-message {
+		    margin-bottom: 0px;
+		}
+		
+		.recruit-enrty-body{
+			min-width: initial;
+			max-width: initial;
+		}
+}
+@media (max-width: 480px) {
+	.background-text {
+	    top: 259px;
+	    right: 20px;
+	    font-size: 88px;
+    }
+    .recruit-cards > div {
+        min-width: auto;
+    }
+    .philosophy-container {
+    	padding: 80px 5px 0px 5px;
+    	width: calc(100% - 10px);
+    	margin-top: 10px;
+    }
+    .benefit-panel {
+	    padding: 24px 0px;
+    }
+    	.benefit-img {
+        	background-size: 800px;
+        }
+    .recruit-button {
+    	width: 240px;
+    }

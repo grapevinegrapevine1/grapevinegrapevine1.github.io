@@ -1,6 +1,7 @@
 $(document).ready(function() {
     
     // 各セクションの要素にスクロールアニメーションを追加
+    addScrollAnimation($('.title'), "fade-in", false);
     addScrollAnimation($('.service-overview-section'), "fade-in", false);
     
     // BPフローダイアグラム

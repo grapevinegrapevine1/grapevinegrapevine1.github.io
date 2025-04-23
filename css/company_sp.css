@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+	.section-container {
+	    padding: 30px 10px 30px 10px;
+	}
+	.about-text {
+		margin-top: 40px;
+		text-align: center;
+	}
+	.background-text {
+		font-size: 90px;
+		top: 530px;
+	}
+	.profile-background-text{
+		font-size:60px;
+	}
+	.profile-background-text {
+		font-size: 60px;
+	}
+}

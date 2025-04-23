@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+
+	.service-overview-section {
+	    padding: 100px 0 0px;
+    }
+    	.service-overview-content {
+		    margin-top: 30px;
+		}
+    	.service-overview-text span {
+		    line-height: 2.1;
+    	}
+    .bar-chart-container{
+    	height: 160px;
+    }
+    .strength-panel {
+    	padding: 30px 0;
+    }
+		.section-header {
+	    	margin-bottom: 0px;
+	    }
+		.strengths-grid {
+			margin-top: 0px;
+		}
+}
+
+
+@media (max-width: 1100px) {
+    .strengths-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-cards {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .section-container {
+        padding: 40px 20px;
+    }
+}
