@@ -121,7 +121,7 @@ main{
 				  animation-delay: 0.2s;
 				}
 			
-		.service-card:hover {
+		.service-card:hover, .service-card.hover-active {
 		    transform: translateY(-5px);
 		    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 		}
@@ -195,6 +195,7 @@ main{
 		.strength-content {
 		    display: flex;
 		    flex-direction: column;
+		    padding: 0 5px;
 		}
 
 		.chart-container {

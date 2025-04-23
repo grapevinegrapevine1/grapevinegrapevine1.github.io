@@ -32,7 +32,7 @@
 	.fade-in-up {
 	    animation: fade-in-up 1s ease forwards;
 	}
-
+	
 /* アニメーション - 右からスライドイン */
 @keyframes slide-in-from-right {
   0% {
@@ -781,7 +781,7 @@ input,textarea{
 		    text-align: center;
 		}
 			.ceo-message div {
-				font-size: clamp( 16px, calc( 15.076923076923077px + 0.19230769230769232vw ), 17px );
+				font-size: clamp( 15px, calc( 13.153846153846153px + 0.38461538461538464vw ), 17px );
 				line-height: 1.8;
 				color: #333;
 				margin-bottom: 25px;
@@ -789,7 +789,6 @@ input,textarea{
 			
 /* フッタースタイル */
 .footer {
-	opacity:0;
 	background-color: #2c3240; /* ダークネイビー背景色 */
 	color: #ffffff;
 	padding: 60px 40px 20px;
