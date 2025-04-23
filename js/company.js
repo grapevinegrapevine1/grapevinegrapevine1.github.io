@@ -11,6 +11,7 @@ $(document).ready(function() {
     
     // 各セクションの要素にスクロールアニメーションを追加
     addScrollAnimation($('.message-container'), "wipe-from-left", false);
+    addScrollAnimation($('.about-content'), "fade-in", false);
     
     addScrollAnimation($('.profile-content'), "fade-in", false);
     addScrollAnimation($('.profile-table'), "highlight-tr", true);

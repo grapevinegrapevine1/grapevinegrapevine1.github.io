@@ -2,7 +2,6 @@ $(document).ready(function() {
     // ヘッダーのアニメーション
 	headerBounceAnimation();
 	
-    addScrollAnimation($('.footer'), "poyon-from-bottom", true);
 });
 
 // スクロールアニメーション機能の追加

@@ -74,7 +74,46 @@ $(document).ready(function() {
     postContactForm();
 });
 
-
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Select all service card elements
+  const serviceCards = document.querySelectorAll('.service-card');
+  
+  // Create an Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Element is visible in viewport, simulate hover
+        entry.target.classList.add('hover-active');
+        
+        // You could also dispatch a custom hover event if needed
+        const hoverEvent = new MouseEvent('mouseenter', {
+          bubbles: true,
+          cancelable: true
+        });
+        entry.target.dispatchEvent(hoverEvent);
+        
+      } else {
+        // Element is not visible, remove hover
+        entry.target.classList.remove('hover-active');
+        
+        // Dispatch a mouseleave event
+        const leaveEvent = new MouseEvent('mouseleave', {
+          bubbles: true,
+          cancelable: true
+        });
+        entry.target.dispatchEvent(leaveEvent);
+      }
+    });
+  }, {
+    threshold: 0.5 // Element is considered visible when 20% is in viewport
+  });
+  
+  // Start observing each service card
+  serviceCards.forEach(card => {
+    observer.observe(card);
+  });
+});
 // サービス一覧セクションの表示アニメーション
 $(document).ready(function() {
 	seriveLineUpAnimation();
