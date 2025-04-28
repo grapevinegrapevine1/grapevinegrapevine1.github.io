@@ -27,27 +27,35 @@ function accordionBenefit(){
         }, 10);
     });
     
-    // 制度カード自体をクリックした場合もアコーディオンを開閉
-    $('.benefit-card-item').click(function(e) {
-        // アコーディオントグルボタン自体がクリックされた場合は何もしない（上のハンドラで処理される）
-        if ($(e.target).hasClass('accordion-toggle') || $(e.target).closest('.accordion-toggle').length) {
-            return;
-        }
-        
-        // アコーディオンコンテンツ内のリンク要素がクリックされた場合は閉じない
-        if ($(e.target).closest('.accordion-content').length && $(e.target).is('a.detail-link')) {
-            return;
-        }
-        
-        // 現在のアコーディオンをトグル
-        $(this).toggleClass('accordion-active');
-        
-        // トグルボタンのアニメーション状態をリセット
-        $(this).find('.accordion-toggle').css('animation', 'none');
-        setTimeout(() => {
-            $(this).find('.accordion-toggle').css('animation', '');
-        }, 10);
-    });
+	// 制度カード自体をクリックした場合もアコーディオンを開閉
+	$('.benefit-card-item').click(function(e) {
+	    // アコーディオントグルボタン自体がクリックされた場合は何もしない（上のハンドラで処理される）
+	    if ($(e.target).hasClass('accordion-toggle') || $(e.target).closest('.accordion-toggle').length) {
+	        return;
+	    }
+	    
+	    // アコーディオンコンテンツ内のリンク要素がクリックされた場合は閉じない
+	    if ($(e.target).closest('.accordion-content').length && $(e.target).is('a.detail-link')) {
+	        return;
+	    }
+	    
+	    // 全てのアコーディオンの状態を現在クリックしたアイテムと同じにする
+	    const isActive = $(this).hasClass('accordion-active');
+	    
+	    if (isActive) {
+	        // 全て閉じる
+	        $('.benefit-card-item').removeClass('accordion-active');
+	    } else {
+	        // 全て開く
+	        $('.benefit-card-item').addClass('accordion-active');
+	    }
+	    
+	    // 全てのトグルボタンのアニメーション状態をリセット
+	    $('.benefit-card-item').find('.accordion-toggle').css('animation', 'none');
+	    setTimeout(() => {
+	        $('.benefit-card-item').find('.accordion-toggle').css('animation', '');
+	    }, 10);
+	});
     
     // ホバー効果の拡張（オプション）
     $('.benefit-card-item').hover(
