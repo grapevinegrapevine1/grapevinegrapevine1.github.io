@@ -27,35 +27,20 @@ function accordionBenefit(){
         }, 10);
     });
     
-	// 制度カード自体をクリックした場合もアコーディオンを開閉
-	$('.benefit-card-item').click(function(e) {
-	    // アコーディオントグルボタン自体がクリックされた場合は何もしない（上のハンドラで処理される）
-	    if ($(e.target).hasClass('accordion-toggle') || $(e.target).closest('.accordion-toggle').length) {
-	        return;
-	    }
-	    
-	    // アコーディオンコンテンツ内のリンク要素がクリックされた場合は閉じない
-	    if ($(e.target).closest('.accordion-content').length && $(e.target).is('a.detail-link')) {
-	        return;
-	    }
-	    
-	    // 全てのアコーディオンの状態を現在クリックしたアイテムと同じにする
-	    const isActive = $(this).hasClass('accordion-active');
-	    
-	    if (isActive) {
-	        // 全て閉じる
-	        $('.benefit-card-item').removeClass('accordion-active');
-	    } else {
-	        // 全て開く
-	        $('.benefit-card-item').addClass('accordion-active');
-	    }
-	    
-	    // 全てのトグルボタンのアニメーション状態をリセット
-	    $('.benefit-card-item').find('.accordion-toggle').css('animation', 'none');
-	    setTimeout(() => {
-	        $('.benefit-card-item').find('.accordion-toggle').css('animation', '');
-	    }, 10);
-	});
+    // アコーディオン機能 - 専用ボタンをクリックした場合
+    $('.benefit-card-item').click(function(e) {
+        e.stopPropagation(); // 親要素へのイベント伝播を防止
+        const $item = $(this);
+        
+        // 現在のアコーディオンをトグル
+        $item.toggleClass('accordion-active');
+        
+        // アニメーション状態をリセット（クリック後の不自然なアニメーション防止）
+        $(this).css('animation', 'none');
+        setTimeout(() => {
+            $(this).css('animation', '');
+        }, 10);
+    });
     
     // ホバー効果の拡張（オプション）
     $('.benefit-card-item').hover(

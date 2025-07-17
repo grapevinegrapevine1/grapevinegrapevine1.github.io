@@ -16,21 +16,27 @@
 	    .entry-scrolling-text li {
 		    font-size: 100px;
 		}
-	
+}
+
+@media (max-width: 1540px) {
 	.stats-grid {
 	    grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
-
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1185px) {
 	.stats-grid {
 	    grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
+}
+@media (max-width: 768px) {
     .company-pamphlet-swiper {
         max-height: 400px; /* 最大高さを設定 */
         min-height: 500px; /* 最大高さを設定 */
     }
+	.stats-grid {
+	    grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
 }
 
 @media (max-width: 480px) {
@@ -56,9 +62,6 @@
     .entry-section {
     	padding-top: 100px;
     }
-	.stats-grid {
-	    grid-template-columns: repeat(1, minmax(0, 1fr));
-	}
     .company-pamphlet-swiper {
         max-height: 200px; /* 最大高さを設定 */
         min-height: 300px; /* 最大高さを設定 */

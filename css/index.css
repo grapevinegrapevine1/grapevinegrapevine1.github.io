@@ -244,7 +244,6 @@ main{
 		    font-size: 16px;
 		    line-height: 1.5;
 		    color: #666;
-		    font-weight: 100;
 		}
 
 		.detail-link {
@@ -275,7 +274,11 @@ main{
 			.benefit-card-item {
 			    position: relative;
 			    padding: 25px 45px 25px 5px; /* 右側の余白を増やす */
-		}
+			}
+				.benefit-card-item-ampersand{
+					font-weight: bold;
+   					font-size: 14px;
+				}
 
 /* リクルートセクション */
 .recruit-section {

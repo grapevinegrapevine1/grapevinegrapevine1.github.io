@@ -96,3 +96,11 @@
     .recruit-button {
     	width: 240px;
     }
+    .benefit-card-item-ampersand{
+		display: block;
+        font-size: 15px;
+        line-height: 10px;
+        font-weight: initial;
+        padding-left: 9px;
+    }
+}

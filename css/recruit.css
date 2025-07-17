@@ -100,6 +100,7 @@ main {
 	}
 	.main-panel-text {
 	    flex: 1;
+	    text-align: center;
 	}
 
 	.main-panel-title {
@@ -109,13 +110,38 @@ main {
 	    line-height: 1.2;
 	    margin-bottom: 15px;
 	}
-
-	.main-panel-subtitle {
-	    font-size: 16px;
-	    color: #999;
-	    text-transform: uppercase;
-	    letter-spacing: 2px;
-	}
+		.main-panel-ampersand{
+		    display: block;
+    		font-size: 25px;
+		}
+		.main-panel-subtitle {
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+            margin-top: 30px;
+            position: relative;
+            display: inline-block;
+		}
+	        .main-panel-subtitle::before,
+	        .main-panel-subtitle::after {
+	            content: '';
+	            position: absolute;
+	            width: 40px;
+	            height: 1px;
+	            background: #ddd;
+	            top: 50%;
+	            transform: translateY(-50%);
+	        }
+	
+	        .main-panel-subtitle::before {
+	            right: calc(100% + 20px);
+	        }
+	
+	        .main-panel-subtitle::after {
+	            left: calc(100% + 20px);
+	        }
 
 	.main-panel-image {
 	    width: 200px;
@@ -682,6 +708,7 @@ main {
 		margin-inline: 0;
 		gap: 0;
 		overflow: hidden;
+        height: 250px;
 	}
 	.entry-scrolling-text li {
 		color: #ffebcd;

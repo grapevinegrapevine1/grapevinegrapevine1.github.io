@@ -262,10 +262,10 @@ function createChart(){
         },
         {
             id: 'remoteWorkChart',
-            type: 'pie',
-            labels: ['リモートワーク', '部分的リモート', '出社'],
-            data: [20, 10, 10],
-            colors: ['#ff9900', '#ffa533', '#ffb966']
+            type: 'doughnut',
+            labels: ['リモートワーク', 'ハイブリッド', '常駐'],
+            data: [20, 10, 0],
+            colors: ['#ff9900', '#ffb966', '#ffe0b2']
         },
         {
             id: 'engineerExperienceChart',
@@ -284,9 +284,9 @@ function createChart(){
         {
             id: 'engineerSkillChart',
             type: 'doughnut',
-            labels: ['フルスタック', 'クラウド', 'フロント/バック', 'バックエンド', 'テスト'],
-            data: [10, 10, 20, 0, 0],	
-            colors: ['#ff9900', '#ffa533', '#ffb966', '#ffcc99', '#ffe0b2']
+            labels: ['フルスタック', 'フロント/バック', 'バックエンド', 'テスト'],
+            data: [10, 20, 0, 0],	
+            colors: ['#ff9900', '#ffa533', '#ffb966', '#ffcc99']
         },
         {
             id: 'genderRatioChart',
