@@ -4,13 +4,13 @@
     <base target="_top">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>給与シミュレーター</title>
+    <title>給料シミュレーター</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 20px 20px 40px;
             background-color: #f5f5f5;
         }
         .container {
@@ -92,11 +92,53 @@
             font-size: 14px;
             color: #856404;
         }
+        .comparison {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f0f7ff;
+            border-radius: 5px;
+            display: none;
+            border: 1px solid #e3f2fd;
+        }
+        .comparison h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #1976d2;
+            font-size: 18px;
+        }
+        .comparison-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: white;
+            border-radius: 3px;
+            min-height: 60px;
+        }
+        .comparison-label {
+            color: #555;
+            font-size: 14px;
+        }
+        .comparison-values {
+            text-align: right;
+        }
+        .comparison-value {
+            color: #1976d2;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .comparison-annual {
+            color: #FF5722;
+            font-size: 13px;
+            margin-top: 3px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>給与シミュレーター</h1>
+        <h1>給料シミュレーター</h1>
         
         <div class="input-group">
             <label for="unitPrice">単価（円）</label>
@@ -109,7 +151,7 @@
                 <span class="result-value" id="returnTotal">¥0</span>
             </div>
             <div class="result-item">
-                <span class="result-label">給与（企業負担社会保険料控除後）：</span>
+                <span class="result-label">給与（社会保険料15%控除後）：</span>
                 <span class="result-value salary" id="salary">¥0</span>
             </div>
             <div class="result-item">
@@ -127,6 +169,41 @@
             ※ 給与は還元総額から社会保険料15%を控除した金額です。<br>
             ※ 年収は月給×12ヶ月で計算しています。
         </div>
+        
+        <div class="comparison" id="comparison">
+            <h3>他社事例（会社の利益上限なし）</h3>
+            <div class="comparison-item">
+                <span class="comparison-label">単価の8割を給与還元：</span>
+                <div class="comparison-values">
+                    <div class="comparison-value" id="comp80">¥0</div>
+                    <div class="comparison-annual" id="comp80Annual">年収: ¥0</div>
+                </div>
+            </div>
+            <div class="comparison-item">
+                <span class="comparison-label">単価の7割を給与還元：</span>
+                <div class="comparison-values">
+                    <div class="comparison-value" id="comp70">¥0</div>
+                    <div class="comparison-annual" id="comp70Annual">年収: ¥0</div>
+                </div>
+            </div>
+            <div class="comparison-item">
+                <span class="comparison-label">単価の6割を給与還元：</span>
+                <div class="comparison-values">
+                    <div class="comparison-value" id="comp60">¥0</div>
+                    <div class="comparison-annual" id="comp60Annual">年収: ¥0</div>
+                </div>
+            </div>
+            <div class="comparison-item">
+                <span class="comparison-label">単価の5割を給与還元：</span>
+                <div class="comparison-values">
+                    <div class="comparison-value" id="comp50">¥0</div>
+                    <div class="comparison-annual" id="comp50Annual">年収: ¥0</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-size: 12px; color: #666;">
+                ※上記は給与(月給)と年収の金額です。社会保険料15%控除後の手取り額を表示しています。
+            </p>
+        </div>
     </div>
 
     <script>
@@ -136,6 +213,15 @@
         const salarySpan = document.getElementById('salary');
         const companyProfitSpan = document.getElementById('companyProfit');
         const annualSalarySpan = document.getElementById('annualSalary');
+        const comparisonDiv = document.getElementById('comparison');
+        const comp80Span = document.getElementById('comp80');
+        const comp70Span = document.getElementById('comp70');
+        const comp60Span = document.getElementById('comp60');
+        const comp50Span = document.getElementById('comp50');
+        const comp80AnnualSpan = document.getElementById('comp80Annual');
+        const comp70AnnualSpan = document.getElementById('comp70Annual');
+        const comp60AnnualSpan = document.getElementById('comp60Annual');
+        const comp50AnnualSpan = document.getElementById('comp50Annual');
         
         unitPriceInput.addEventListener('input', calculateSalary);
         
@@ -161,9 +247,27 @@
                 companyProfitSpan.textContent = formatCurrency(companyProfit);
                 annualSalarySpan.textContent = formatCurrency(annualSalary);
                 
+                // 他社事例を計算（社会保険料15%控除後）
+                const comp80Salary = unitPrice * 0.8 * 0.85;
+                const comp70Salary = unitPrice * 0.7 * 0.85;
+                const comp60Salary = unitPrice * 0.6 * 0.85;
+                const comp50Salary = unitPrice * 0.5 * 0.85;
+                
+                comp80Span.textContent = formatCurrency(comp80Salary);
+                comp70Span.textContent = formatCurrency(comp70Salary);
+                comp60Span.textContent = formatCurrency(comp60Salary);
+                comp50Span.textContent = formatCurrency(comp50Salary);
+                
+                comp80AnnualSpan.textContent = '年収: ' + formatCurrency(comp80Salary * 12);
+                comp70AnnualSpan.textContent = '年収: ' + formatCurrency(comp70Salary * 12);
+                comp60AnnualSpan.textContent = '年収: ' + formatCurrency(comp60Salary * 12);
+                comp50AnnualSpan.textContent = '年収: ' + formatCurrency(comp50Salary * 12);
+                
                 resultsDiv.style.display = 'block';
+                comparisonDiv.style.display = 'block';
             } else {
                 resultsDiv.style.display = 'none';
+                comparisonDiv.style.display = 'none';
             }
         }
         
