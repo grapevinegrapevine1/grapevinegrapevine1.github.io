@@ -97,7 +97,7 @@
             padding: 20px;
             background-color: #f0f7ff;
             border-radius: 5px;
-            display: none;
+            display: none !important;
             border: 1px solid #e3f2fd;
         }
         .comparison h3 {
@@ -151,7 +151,7 @@
                 <span class="result-value" id="returnTotal">¥0</span>
             </div>
             <div class="result-item">
-                <span class="result-label">給与（社会保険料15%控除後）：</span>
+                <span class="result-label">給与：</span>
                 <span class="result-value salary" id="salary">¥0</span>
             </div>
             <div class="result-item">
@@ -166,7 +166,6 @@
         
         <div class="note">
             ※ 会社の利益は最大10万円までとし、単価の8割を給与還元します。<br>
-            ※ 給与は還元総額から社会保険料15%を控除した金額です。<br>
             ※ 年収は月給×12ヶ月で計算しています。
         </div>
         
@@ -201,7 +200,7 @@
                 </div>
             </div>
             <p style="margin-top: 15px; font-size: 12px; color: #666;">
-                ※上記は給与(月給)と年収の金額です。社会保険料15%控除後の手取り額を表示しています。
+                ※上記は給与(月給)と年収の金額です。
             </p>
         </div>
     </div>
@@ -235,8 +234,10 @@
                 // 還元総額を計算（単価から会社利益を引いた額）
                 const returnTotal = unitPrice - companyProfit;
                 
+                const baseSalary = 260000;
                 // 給与を計算（還元総額から社会保険料15%を控除）
-                const salary = returnTotal * 0.85;
+                const syaho = Math.round(baseSalary * 0.04955 + baseSalary * 0.0915 + baseSalary * 0.0036 + unitPrice * 0.01);
+                const salary = returnTotal - syaho;
                 
                 // 年収を計算（月給×12ヶ月）
                 const annualSalary = salary * 12;
@@ -259,7 +260,7 @@
                 comp50Span.textContent = formatCurrency(comp50Salary);
                 
                 comp80AnnualSpan.textContent = '年収: ' + formatCurrency(comp80Salary * 12);
-                comp70AnnualSpan.textContent = '年収: ' + formatCurrency(comp70Salary * 12);
+                 comp70AnnualSpan.textContent = '年収: ' + formatCurrency(comp70Salary * 12);
                 comp60AnnualSpan.textContent = '年収: ' + formatCurrency(comp60Salary * 12);
                 comp50AnnualSpan.textContent = '年収: ' + formatCurrency(comp50Salary * 12);
                 
