@@ -199,7 +199,7 @@ function postRecruitEntryForm() {
 }
 
 function createChart(){
-	// Create the Intersection Observer
+    // Create the Intersection Observer
     const chartObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -251,59 +251,124 @@ function createChart(){
         chartObserver.observe(chart);
     });
     
-    // チャートのデータと設定を定義
+    // カスタムラベル表示プラグイン
+    const dataLabelsPlugin = {
+        id: 'dataLabels',
+        afterDatasetsDraw: function(chart) {
+            const ctx = chart.ctx;
+            
+            // ドーナツまたはパイチャートの場合のみラベルを表示
+            if (chart.config.type === 'doughnut' || chart.config.type === 'pie') {
+                chart.data.datasets.forEach((dataset, datasetIndex) => {
+                    const meta = chart.getDatasetMeta(datasetIndex);
+                    
+                    meta.data.forEach((element, index) => {
+                        const data = dataset.data[index];
+                        
+                        // データが0の場合はラベルを表示しない
+                        if (data === 0) return;
+                        
+                        // ラベル情報を取得
+                        const label = chart.data.labels[index];
+                        const total = dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = Math.round((data / total) * 100);
+                        
+                        // ラベル位置を計算
+                        const centerX = element.x;
+                        const centerY = element.y;
+                        const radius = (element.innerRadius + element.outerRadius) / 2;
+                        const angle = (element.startAngle + element.endAngle) / 2;
+                        
+                        const x = centerX + Math.cos(angle) * radius;
+                        const y = centerY + Math.sin(angle) * radius;
+                        
+                        // テキスト描画の設定
+                        ctx.save();
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = 'bold 12px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        
+                        // 影を追加（視認性向上）
+                        ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+                        ctx.shadowBlur = 3;
+                        ctx.shadowOffsetX = 1;
+                        ctx.shadowOffsetY = 1;
+                        
+                        // ラベルとパーセンテージを描画
+                        ctx.fillText(`${label}`, x, y - 8);
+                        ctx.fillText(`${percentage}%`, x, y + 8);
+                        
+                        ctx.restore();
+                    });
+                });
+            }
+        }
+    };
+    
+    // プラグインを登録
+    Chart.register(dataLabelsPlugin);
+    
+    // チャートのデータと設定を定義（赤・青系統で統一）
     const chartConfigs = [
         {
             id: 'overtimeChart',
             type: 'doughnut',
             labels: ['0-5時間', '5-10時間', '10-15時間', '15時間以上'],
-            data: [20, 20, 0, 0],
-            colors: ['#ff9900', '#ffa533', '#ffb966', '#ffcc99']
+            data: [70, 30, 0, 0],
+            colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99'],
+            showLabels: false
         },
         {
             id: 'remoteWorkChart',
             type: 'doughnut',
-            labels: ['リモートワーク', 'ハイブリッド', '常駐'],
-            data: [20, 10, 0],
-            colors: ['#ff9900', '#ffb966', '#ffe0b2']
+            labels: ['フルリモート', 'ハイブリッド', '常駐'],
+            data: [70, 30, 0],
+            colors: [' #ff9900', ' #ffb966', ' #ffe0b2'],
+            showLabels: false
         },
         {
             id: 'engineerExperienceChart',
             type: 'doughnut',
             labels: ['10年以上', '5-10年', '3-5年', '1-3年', '1年未満'],
-            data: [20, 10, 10, 0, 0],
-            colors: ['#ff9900', '#ffa533', '#ffb966', '#ffcc99', '#ffe0b2']
+            data: [50, 25, 25, 0, 0],
+            colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99', ' #ffe0b2'],
+            showLabels: false // 項目が多い場合はラベルを非表示
         },
         {
             id: 'engineerPositionChart',
             type: 'doughnut',
             labels: ['PM', 'PL', '基本設計', '詳細設計', 'コーディング'],
-            data: [20, 0, 10, 10, 0],
-            colors: ['#ff9900', '#ffa533', '#ffb966', '#ffcc99', '#ffe0b2']
+            data: [50, 0, 25, 25, 0],
+            colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99', ' #ffe0b2'],
+            showLabels: false // 項目が多い場合はラベルを非表示
         },
         {
             id: 'engineerSkillChart',
             type: 'doughnut',
             labels: ['フルスタック', 'フロント/バック', 'バックエンド', 'テスト'],
-            data: [10, 20, 0, 0],	
-            colors: ['#ff9900', '#ffa533', '#ffb966', '#ffcc99']
+            data: [30, 70, 0, 0],
+            colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99'],
+            showLabels: false
         },
         {
             id: 'genderRatioChart',
             type: 'pie',
             labels: ['男性', '女性'],
             data: [100, 0],
-            colors: ['#ff9900', '#ffa533']
+            colors: [' #ff9900', ' #ffa533'],
+            showLabels: false
         },
         {
             id: 'revenueChart',
             type: 'bar',
             labels: ['2025年', '2026年', '2027年', '2028年', '2029年'],
             data: [4, 8, 30, 50, 80],
-            colors: ['#ff9900', '#ffa533', '#ffb966', '#ffcc99', '#ffe0b2']
+            colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99', ' #ffe0b2'],
+            showLabels: false // 棒グラフはラベル非対象
         }
     ];
-	
+    
     // チャートの描画関数
     function createChart(config) {
         const ctx = document.getElementById(config.id).getContext('2d');
@@ -322,7 +387,11 @@ function createChart(){
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: config.type === 'doughnut' ? 'right' : 'top'
+                        position: config.type === 'doughnut' ? 'right' : 'top',
+                        display: !config.showLabels // ラベル表示時は凡例を非表示
+                    },
+                    dataLabels: {
+                        display: config.showLabels || false
                     }
                 },
                 scales: config.type === 'bar' ? {
@@ -369,9 +438,7 @@ function createChart(){
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        // Y軸のラベルを整数で表示
                         precision: 0,
-                        // Y軸のラベル表示を明示的に設定
                         callback: function(value) {
                             return Math.round(value);
                         }
@@ -379,7 +446,6 @@ function createChart(){
                 },
                 x: {
                     ticks: {
-                        // X軸のラベルを明示的に設定
                         autoSkip: false,
                         maxRotation: 0,
                         minRotation: 0
@@ -388,7 +454,6 @@ function createChart(){
             },
             plugins: {
                 legend: {
-                    // 凡例の表示設定
                     display: true
                 }
             }
