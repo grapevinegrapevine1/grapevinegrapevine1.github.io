@@ -1,0 +1,236 @@
+@charset "UTF-8";
+
+/* --- モーダル表示ボタン --- */
+#simulator-open-label {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff9800, #ff6f00);
+    color: white;
+    padding: 14px 26px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 999;
+    transition: background 0.3s, transform 0.2s;
+}
+#simulator-open-label:hover {
+    background: linear-gradient(135deg, #e68900, #d85c00);
+    transform: translateY(-3px);
+}
+
+
+ /* --- モーダルのスタイル --- */
+.simulator-modal-overlay {
+	display: none;
+	align-items: center;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.6);
+	animation: fadeIn 0.3s;
+}
+
+.simulator-modal-content {
+	position: relative;
+	margin: 5% auto;
+	width: 90%;
+	max-width: 650px;
+	animation: slideIn 0.4s;
+}
+
+/* --- 閉じるボタン（アイコン風）--- */
+.simulator-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+.simulator-modal-close:hover {
+    color: #ff6f00;
+    transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+	from {
+	 opacity:0;
+	}
+	to {
+	 opacity: 1;
+	}
+}
+
+@keyframes slideIn {
+	from {
+	 transform:translateY(-50px);
+	 opacity: 0;
+	}
+	to {
+	 transform: translateY(0);
+	 opacity: 1;
+	}
+}
+
+/* --- シミュレーター本体のスタイル --- */
+.simulator-body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		sans-serif;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+}
+
+.simulator-container {
+	background-color: white;
+	padding: 30px 10px;
+	border-radius: 10px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.simulator-container h1 {
+    color: #333;
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 2px solid #ffe0b2;
+    padding-bottom: 10px;
+}
+
+.simulator-input-group {
+	margin-bottom: 30px;
+}
+
+.simulator-container label {
+	display: block;
+	margin-bottom: 8px;
+	color: #555;
+	font-weight: bold;
+}
+
+.simulator-container input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.simulator-container input[type="number"]:focus {
+    outline: none;
+    border-color: #ff9800;
+    box-shadow: 0 0 0 3px rgba(255,152,0,0.2);
+}
+
+.simulator-results {
+	margin-top: 30px;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 5px;
+	display: none;
+}
+
+.simulator-result-item {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.simulator-result-item:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.simulator-result-label {
+	color: #666;
+	font-weight: 500;
+}
+
+.simulator-result-value {
+	color: #333;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.simulator-salary {
+	color: #4CAF50;
+}
+
+.simulator-company-profit {
+	color: #2196F3;
+}
+
+.simulator-annual-salary {
+	color: #FF5722;
+	font-size: 20px;
+}
+
+.simulator-note {
+	margin-top: 20px;
+	padding: 15px;
+	background-color: #fff3cd;
+	border-radius: 5px;
+	font-size: 14px;
+	color: #856404;
+}
+
+.simulator-comparison {
+	margin-top: 30px;
+	padding: 20px;
+	background-color: #f0f7ff;
+	border-radius: 5px;
+	display: none !important;
+	border: 1px solid #e3f2fd;
+}
+
+.simulator-comparison h3 {
+	margin-top: 0;
+	margin-bottom: 20px;
+	color: #1976d2;
+	font-size: 18px;
+}
+
+.simulator-comparison-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+	padding: 12px;
+	background-color: white;
+	border-radius: 3px;
+	min-height: 60px;
+}
+
+.simulator-comparison-label {
+	color: #555;
+	font-size: 14px;
+}
+
+.simulator-comparison-values {
+	text-align: right;
+}
+
+.simulator-comparison-value {
+	color: #1976d2;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.simulator-comparison-annual {
+	color: #FF5722;
+	font-size: 13px;
+	margin-top: 3px;
+	font-weight: 500;
+}
