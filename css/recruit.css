@@ -581,6 +581,7 @@ main {
 	.benefit-item:nth-child(4) { animation-delay: 0.4s; }
 	.benefit-item:nth-child(5) { animation-delay: 0.5s; }
 	.benefit-item:nth-child(6) { animation-delay: 0.6s; }
+	.benefit-item:nth-child(6) { animation-delay: 0.7s; }
 
 	@keyframes fadeInUp {
 	    0% {
