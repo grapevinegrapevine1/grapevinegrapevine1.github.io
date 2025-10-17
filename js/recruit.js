@@ -315,7 +315,7 @@ function createChart(){
             id: 'overtimeChart',
             type: 'doughnut',
             labels: ['0-5時間', '5-10時間', '10-15時間', '15時間以上'],
-            data: [70, 30, 0, 0],
+            data: [60, 30, 10, 0],
             colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99'],
             showLabels: false
         },
@@ -338,7 +338,7 @@ function createChart(){
         {
             id: 'engineerPositionChart',
             type: 'doughnut',
-            labels: ['要件定義から対応可能', '基本設計から対応可能', '詳細設計から対応可能', 'コーディングから対応可能', 'テストのみ'],
+            labels: ['要件定義レベル', '基本設計レベル', '詳細設計レベル', 'コーディングレベル', 'テストのみ'],
             data: [60, 20, 20, 0, 0],
             colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99', ' #ffe0b2'],
             showLabels: false // 項目が多い場合はラベルを非表示
