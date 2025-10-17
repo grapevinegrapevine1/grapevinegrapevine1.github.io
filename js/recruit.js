@@ -323,7 +323,7 @@ function createChart(){
             id: 'remoteWorkChart',
             type: 'doughnut',
             labels: ['フルリモート', 'ハイブリッド', '常駐'],
-            data: [70, 30, 0],
+            data: [50, 33, 17],
             colors: [' #ff9900', ' #ffb966', ' #ffe0b2'],
             showLabels: false
         },
@@ -331,23 +331,23 @@ function createChart(){
             id: 'engineerExperienceChart',
             type: 'doughnut',
             labels: ['10年以上', '5-10年', '3-5年', '1-3年', '1年未満'],
-            data: [50, 25, 25, 0, 0],
+            data: [40, 40, 20, 0, 0],
             colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99', ' #ffe0b2'],
             showLabels: false // 項目が多い場合はラベルを非表示
         },
         {
             id: 'engineerPositionChart',
             type: 'doughnut',
-            labels: ['PM', 'PL', '基本設計', '詳細設計', 'コーディング'],
-            data: [50, 0, 25, 25, 0],
+            labels: ['要件定義から対応可能', '基本設計から対応可能', '詳細設計から対応可能', 'コーディングから対応可能', 'テストのみ'],
+            data: [60, 20, 20, 0, 0],
             colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99', ' #ffe0b2'],
             showLabels: false // 項目が多い場合はラベルを非表示
         },
         {
             id: 'engineerSkillChart',
             type: 'doughnut',
-            labels: ['フルスタック', 'フロント/バック', 'バックエンド', 'テスト'],
-            data: [30, 70, 0, 0],
+            labels: ['フルスタック', 'フロント/バック', 'バックエンド', 'フロント', 'サーバー', 'ネットワーク'],
+            data: [20, 60, 0, 0, 20, 0],
             colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99'],
             showLabels: false
         },
@@ -363,7 +363,7 @@ function createChart(){
             id: 'revenueChart',
             type: 'bar',
             labels: ['2025年', '2026年', '2027年', '2028年', '2029年'],
-            data: [4, 8, 30, 50, 80],
+            data: [4, 10, 30, 50, 80],
             colors: [' #ff9900', ' #ffa533', ' #ffb966', ' #ffcc99', ' #ffe0b2'],
             showLabels: false // 棒グラフはラベル非対象
         }
@@ -460,3 +460,4 @@ function createChart(){
         }
     });
 }
+
