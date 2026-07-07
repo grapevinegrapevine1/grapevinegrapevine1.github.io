@@ -354,9 +354,9 @@ function createChart(){
         {
             id: 'genderRatioChart',
             type: 'pie',
-            labels: ['男性', '女性'],
-            data: [100, 0],
-            colors: [' #ff9900', ' #ffa533'],
+            labels: ['還元率'],
+            data: [84, 0],
+            colors: [' #ff9900'],
             showLabels: false
         },
         {
