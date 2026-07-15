@@ -212,10 +212,9 @@ function createChart(){
                     if (chart.config.type === 'bar') {
                         // 棒グラフの場合
                         chart.data.datasets.forEach((dataset) => {
-                            const originalData = [...dataset.data];
-                            dataset.data = dataset.data.map(() => 0);
-                            chart.update('none');
-                            
+                            // 初期化時に保存しておいた本来のデータを使用
+                            const originalData = dataset._originalData || [...dataset.data];
+
                             // データを徐々に表示
                             originalData.forEach((value, index) => {
                                 setTimeout(() => {
@@ -226,10 +225,9 @@ function createChart(){
                         });
                     } else if (chart.config.type === 'doughnut' || chart.config.type === 'pie') {
                         // ドーナツチャートとパイチャートの場合
-                        const originalData = [...chart.data.datasets[0].data];
-                        chart.data.datasets[0].data = originalData.map(() => 0);
-                        chart.update('none');
-                        
+                        // 初期化時に保存しておいた本来のデータを使用
+                        const originalData = chart.data.datasets[0]._originalData || [...chart.data.datasets[0].data];
+
                         // データを徐々に表示
                         originalData.forEach((value, index) => {
                             setTimeout(() => {
@@ -377,7 +375,9 @@ function createChart(){
             data: {
                 labels: config.labels,
                 datasets: [{
-                    data: config.data,
+                    // 初期表示は0で描画し、Observer発火時に本来のデータへアニメーションさせる
+                    data: config.data.map(() => 0),
+                    _originalData: config.data,
                     backgroundColor: config.colors,
                     borderColor: config.colors.map(color => color.replace('0.7', '1')),
                     borderWidth: 1
@@ -408,13 +408,16 @@ function createChart(){
     
     // 採用者数推移チャート
     const recruitmentCtx = document.getElementById('recruitmentChart').getContext('2d');
+    const recruitmentData = [4, 8, 30, 50, 80];
     const recruitmentChart = new Chart(recruitmentCtx, {
         type: 'bar',
         data: {
             labels: ['2025年', '2026年', '2027年', '2028年', '2029年'],
             datasets: [{
                 label: '採用者数',
-                data: [4, 8, 30, 50, 80],
+                // 初期表示は0で描画し、Observer発火時に本来のデータへアニメーションさせる
+                data: recruitmentData.map(() => 0),
+                _originalData: recruitmentData,
                 backgroundColor: [
                     'rgba(255, 153, 0, 0.7)',
                     'rgba(255, 153, 0, 0.7)',
