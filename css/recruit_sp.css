@@ -53,8 +53,7 @@
     }
     .transparency-sub{
     	font-size: 18px;
-        vertical-align: text-top;
-        font-weight: 100;
+        font-weight: bold;
     }
     .section-container {
         padding: 30px 10px 30px 10px;
