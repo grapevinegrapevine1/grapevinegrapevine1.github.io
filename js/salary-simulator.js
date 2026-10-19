@@ -184,12 +184,22 @@
             return hokenTable[hokenTable.length - 1][1];
         }
 
-        function calcSyaho(returnAmount) {
-            const std = getStandardRemuneration(returnAmount);
-            const kenpo  = Math.round(std * 0.04995); // 健康保険（40歳未満・介護保険なし）
-            const nenkin = Math.round(std * 0.0915);  // 厚生年金
-            const koyo   = Math.round(returnAmount * 0.006); // 雇用保険
-            return kenpo + nenkin + koyo;
+        function calcSyaho(standardRemuneration, actualSalary) {
+            // 労働者負担
+            const kenpo  = Math.round(standardRemuneration * 0.04995);
+            const kaigo  = Math.round(standardRemuneration * 0.0091); // 40歳以上想定、未満なら0
+            const nenkin = Math.round(standardRemuneration * 0.0915);
+            const koyo   = Math.round(actualSalary * 0.006);
+            const workerTotal = kenpo + kaigo + nenkin + koyo;
+
+            // 会社負担（健康・介護・厚生年金は同率、雇用保険のみ異なる）
+            const companyKenpo  = Math.round(standardRemuneration * 0.04995);
+            const companyKaigo  = Math.round(standardRemuneration * 0.0091);
+            const companyNenkin = Math.round(standardRemuneration * 0.0915);
+            const companyKoyo   = Math.round(actualSalary * 0.0095); // 会社負担は0.95%
+            const companyTotal  = companyKenpo + companyKaigo + companyNenkin + companyKoyo;
+
+            return { workerTotal, companyTotal };
         }
 
         function calculateSalary() {
@@ -198,19 +208,42 @@
                 const companyProfit = Math.min(unitPrice * 0.2, 100000);
                 const returnTotal = unitPrice - companyProfit;
 
-                const syaho = calcSyaho(returnTotal);
-                const salary = returnTotal - syaho;
+                // ── 収束計算 ──────────────────────────────────────
+                // 額面は「還元総額 - 会社負担社保」だが、
+                // 会社負担社保の雇用保険は額面に依存するため反復で収束させる
+                let salary = returnTotal * 0.85; // 初期推定値
+                for (let i = 0; i < 10; i++) {
+                    const std = getStandardRemuneration(returnTotal);
+                    const { companyTotal } = calcSyaho(std, salary);
+                    salary = returnTotal - companyTotal;
+                }
+
+                const std = getStandardRemuneration(returnTotal);
+                const { workerTotal, companyTotal } = calcSyaho(std, salary);
                 const annualSalary = salary * 12;
+                const takeDome = salary - workerTotal; // 手取り
 
                 returnTotalSpan.textContent = formatCurrency(returnTotal);
                 salarySpan.textContent = formatCurrency(salary);
                 companyProfitSpan.textContent = formatCurrency(companyProfit);
                 annualSalarySpan.textContent = formatCurrency(annualSalary);
 
-                const comp80Salary = unitPrice * 0.8 - calcSyaho(unitPrice * 0.8);
-                const comp70Salary = unitPrice * 0.7 - calcSyaho(unitPrice * 0.7);
-                const comp60Salary = unitPrice * 0.6 - calcSyaho(unitPrice * 0.6);
-                const comp50Salary = unitPrice * 0.5 - calcSyaho(unitPrice * 0.5);
+                // 他社事例も同様に収束計算
+                function calcCompSalary(rate) {
+                    const compReturn = unitPrice * rate;
+                    let compSalary = compReturn * 0.85;
+                    for (let i = 0; i < 10; i++) {
+                        const compStd = getStandardRemuneration(compReturn);
+                        const { companyTotal } = calcSyaho(compStd, compSalary);
+                        compSalary = compReturn - companyTotal;
+                    }
+                    return compSalary;
+                }
+
+                const comp80Salary = calcCompSalary(0.8);
+                const comp70Salary = calcCompSalary(0.7);
+                const comp60Salary = calcCompSalary(0.6);
+                const comp50Salary = calcCompSalary(0.5);
 
                 comp80Span.textContent = formatCurrency(comp80Salary);
                 comp70Span.textContent = formatCurrency(comp70Salary);
