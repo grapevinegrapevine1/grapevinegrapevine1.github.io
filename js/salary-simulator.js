@@ -269,3 +269,4 @@
 		function formatCurrency(amount) {
 		    return '¥' + Math.round(amount).toLocaleString('ja-JP');
 		}
+	}
