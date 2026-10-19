@@ -123,26 +123,94 @@
         const comp60AnnualSpan = modal.querySelector('#comp60Annual');
         const comp50AnnualSpan = modal.querySelector('#comp50Annual');
 
-        unitPriceInput.addEventListener('input', calculateSalary);
+		unitPriceInput.addEventListener('input', calculateSalary);
+
+        // 標準報酬月額テーブル（協会けんぽ 東京都 2024年度）
+        // [等級, 標準報酬月額, 下限, 上限]
+        const hokenTable = [
+            [1,   58000,      0,   63000],
+            [2,   68000,  63000,   73000],
+            [3,   78000,  73000,   83000],
+            [4,   88000,  83000,   93000],
+            [5,   98000,  93000,  101000],
+            [6,  104000, 101000,  107000],
+            [7,  110000, 107000,  114000],
+            [8,  118000, 114000,  122000],
+            [9,  126000, 122000,  130000],
+            [10, 134000, 130000,  138000],
+            [11, 142000, 138000,  146000],
+            [12, 150000, 146000,  155000],
+            [13, 160000, 155000,  165000],
+            [14, 170000, 165000,  175000],
+            [15, 180000, 175000,  185000],
+            [16, 190000, 185000,  195000],
+            [17, 200000, 195000,  210000],
+            [18, 220000, 210000,  230000],
+            [19, 240000, 230000,  250000],
+            [20, 260000, 250000,  270000],
+            [21, 280000, 270000,  290000],
+            [22, 300000, 290000,  310000],
+            [23, 320000, 310000,  330000],
+            [24, 340000, 330000,  350000],
+            [25, 360000, 350000,  370000],
+            [26, 380000, 370000,  395000],
+            [27, 410000, 395000,  425000],
+            [28, 440000, 425000,  455000],
+            [29, 470000, 455000,  485000],
+            [30, 500000, 485000,  515000],
+            [31, 530000, 515000,  545000],
+            [32, 560000, 545000,  575000],
+            [33, 590000, 575000,  605000],
+            [34, 620000, 605000,  635000],
+            [35, 650000, 635000,  665000],
+            [36, 680000, 665000,  695000],
+            [37, 710000, 695000,  730000],
+            [38, 750000, 730000,  770000],
+            [39, 790000, 770000,  810000],
+            [40, 830000, 810000,  855000],
+            [41, 880000, 855000,  905000],
+            [42, 930000, 905000,  955000],
+            [43, 980000, 955000, 1005000],
+            [44,1030000,1005000, 1055000],
+            [45,1090000,1055000, 1115000],
+            [46,1150000,1115000, 1175000],
+            [47,1210000,1175000, 99999999],
+        ];
+
+        function getStandardRemuneration(monthlyPay) {
+            for (const [, standard, lower, upper] of hokenTable) {
+                if (monthlyPay >= lower && monthlyPay < upper) return standard;
+            }
+            return hokenTable[hokenTable.length - 1][1];
+        }
+
+        function calcSyaho(returnAmount) {
+            const std = getStandardRemuneration(returnAmount);
+            const kenpo  = Math.round(std * 0.04995); // 健康保険（40歳未満・介護保険なし）
+            const nenkin = Math.round(std * 0.0915);  // 厚生年金
+            const koyo   = Math.round(returnAmount * 0.006); // 雇用保険
+            return kenpo + nenkin + koyo;
+        }
+
         function calculateSalary() {
             const unitPrice = parseFloat(unitPriceInput.value) || 0;
             if (unitPrice > 0) {
                 const companyProfit = Math.min(unitPrice * 0.2, 100000);
                 const returnTotal = unitPrice - companyProfit;
-                const baseSalary = 260000;
-                const syaho = Math.round(baseSalary * 0.04955 + baseSalary * 0.0915 + baseSalary * 0.0036 + unitPrice * 0.01);
+
+                const syaho = calcSyaho(returnTotal);
                 const salary = returnTotal - syaho;
                 const annualSalary = salary * 12;
-                
+
                 returnTotalSpan.textContent = formatCurrency(returnTotal);
                 salarySpan.textContent = formatCurrency(salary);
                 companyProfitSpan.textContent = formatCurrency(companyProfit);
                 annualSalarySpan.textContent = formatCurrency(annualSalary);
 
-                const comp80Salary = unitPrice * 0.8 * 0.85;
-                const comp70Salary = unitPrice * 0.7 * 0.85;
-                const comp60Salary = unitPrice * 0.6 * 0.85;
-                const comp50Salary = unitPrice * 0.5 * 0.85;
+                const comp80Salary = unitPrice * 0.8 - calcSyaho(unitPrice * 0.8);
+                const comp70Salary = unitPrice * 0.7 - calcSyaho(unitPrice * 0.7);
+                const comp60Salary = unitPrice * 0.6 - calcSyaho(unitPrice * 0.6);
+                const comp50Salary = unitPrice * 0.5 - calcSyaho(unitPrice * 0.5);
 
                 comp80Span.textContent = formatCurrency(comp80Salary);
                 comp70Span.textContent = formatCurrency(comp70Salary);
@@ -161,6 +229,7 @@
                 comparisonDiv.style.display = 'none';
             }
         }
+
         function formatCurrency(amount) {
             return '¥' + Math.round(amount).toLocaleString('ja-JP');
         }
