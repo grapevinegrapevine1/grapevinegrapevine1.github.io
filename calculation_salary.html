@@ -286,6 +286,34 @@
             return hokenTable[hokenTable.length - 1][1]; // 上限超えは最高等級
         }
         
+        // 協会けんぽ 東京都 2024年度 料率（労働者負担分）
+        const kenpoRate       = 0.04995; // 健康保険料（介護保険非該当）
+        const kaigoRate       = 0.0091;  // 介護保険料（40歳以上の場合、非該当なら0）
+        const nenkinRate      = 0.0915;  // 厚生年金
+        const koyoRate        = 0.006;   // 雇用保険（一般事業）※2024年度
+        
+        function calcSyaho(standardRemuneration, returnTotal) {
+            // 40歳未満想定（介護保険なし）→ 必要に応じてkaigoRateを加算
+            const kenpo  = Math.round(standardRemuneration * kenpoRate);
+            const kaigo  = 0; // 40歳未満の場合0、40歳以上は Math.round(standardRemuneration * kaigoRate)
+            const nenkin = Math.round(standardRemuneration * nenkinRate);
+            // 雇用保険は実際の給与総額に対してかかる
+            const koyo   = Math.round(returnTotal * koyoRate);
+            return { kenpo, kaigo, nenkin, koyo, syaho: kenpo + kaigo + nenkin + koyo };
+        }
+        
+        // 額面給与は標準報酬月額に依存し、標準報酬月額は額面給与で決まるため、上位等級から順に整合する等級を探す
+        // 等級境界付近で整合しない場合は、額面を下位等級の上限未満に抑える
+        function solveSalary(returnTotal) {
+            for (let i = hokenTable.length - 1; i >= 0; i--) {
+                const [grade, standard, lower, upper] = hokenTable[i];
+                const salary = returnTotal - calcSyaho(standard, returnTotal).syaho;
+                if (salary >= lower || i === 0) {
+                    return { salary: Math.min(salary, upper - 1), standardRemuneration: standard };
+                }
+            }
+        }
+        
         function calculateSalary() {
             const unitPrice = parseFloat(unitPriceInput.value) || 0;
         
@@ -297,28 +325,10 @@
                 const returnTotal = unitPrice - companyProfit;
         
                 // ── 社保計算 ──────────────────────────────────────────
-                // 給与概算（非課税通勤費除いた報酬月額として還元総額を使用）
-                // ※通勤費が含まれる場合は標準報酬月額の算定対象になるため保守的に還元総額で算定
-                const reportedMonthlyPay = returnTotal;
-                const standardRemuneration = getStandardRemuneration(reportedMonthlyPay);
-        
-                // 協会けんぽ 東京都 2024年度 料率（労働者負担分）
-                const kenpoRate       = 0.04995; // 健康保険料（介護保険非該当）
-                const kaigoRate       = 0.0091;  // 介護保険料（40歳以上の場合、非該当なら0）
-                const nenkinRate      = 0.0915;  // 厚生年金
-                const koyoRate        = 0.006;   // 雇用保険（一般事業）※2024年度
-        
-                // 40歳未満想定（介護保険なし）→ 必要に応じてkaigoRateを加算
-                const kenpo  = Math.round(standardRemuneration * kenpoRate);
-                const kaigo  = 0; // 40歳未満の場合0、40歳以上は Math.round(standardRemuneration * kaigoRate)
-                const nenkin = Math.round(standardRemuneration * nenkinRate);
-                // 雇用保険は実際の給与総額に対してかかる
-                const koyo   = Math.round(returnTotal * koyoRate);
-        
-                const syaho = kenpo + kaigo + nenkin + koyo;
-        
+                // 標準報酬月額は還元総額ではなく額面給与から求める
                 // 給与額面 = 還元総額 - 会社負担社保（ここでは労働者負担社保を控除して額面を推計）
-                const salary = returnTotal - syaho;
+                const { salary, standardRemuneration } = solveSalary(returnTotal);
+                const { kenpo, kaigo, nenkin, koyo, syaho } = calcSyaho(standardRemuneration, returnTotal);
         
                 // 年収を計算
                 const annualSalary = salary * 12;
@@ -336,10 +346,7 @@
                 // 他社事例を計算（還元率 × 社保控除）
                 // 他社も同様に標準報酬月額ベースで計算
                 function calcCompSalary(rate) {
-                    const compReturn = unitPrice * rate;
-                    const compStd = getStandardRemuneration(compReturn);
-                    const compSyaho = Math.round(compStd * kenpoRate) + Math.round(compStd * nenkinRate) + Math.round(compReturn * koyoRate);
-                    return compReturn - compSyaho;
+                    return solveSalary(unitPrice * rate).salary;
                 }
         
                 const comp80Salary = calcCompSalary(0.8);

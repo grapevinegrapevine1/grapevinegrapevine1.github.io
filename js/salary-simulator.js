@@ -34,7 +34,8 @@
                         </div>
                         <div class="simulator-note">
                             ※ 会社の利益は最大10万円までとし、単価の8割を給与還元します。<br>
-                            ※ 年収は月給×12ヶ月で計算しています。
+                            ※ 年収は月給×12ヶ月で計算しています。<br>
+                            ※ 本シミュレーションはあくまで概算であり、実際の支給額とは異なる場合があります。
                         </div>
                         <div class="simulator-comparison" id="comparison">
                             <h3>他社事例（会社の利益上限なし）</h3>
@@ -202,6 +203,23 @@
             return { workerTotal, companyTotal };
         }
 
+        // 還元総額から額面給与を求める（額面 = 還元総額 - 会社負担社保）
+        // 標準報酬月額は額面給与で決まるため、上位等級から順に整合する等級を探す
+        // 等級境界付近で整合しない場合は、額面を下位等級の上限未満に抑える
+        function solveSalary(returnTotal) {
+            for (let i = hokenTable.length - 1; i >= 0; i--) {
+                const [, std, lower, upper] = hokenTable[i];
+                // 雇用保険は額面に依存するため反復で収束させる
+                let salary = returnTotal;
+                for (let j = 0; j < 10; j++) {
+                    salary = returnTotal - calcSyaho(std, salary).companyTotal;
+                }
+                if (salary >= lower || i === 0) {
+                    return { salary: Math.min(salary, upper - 1), std };
+                }
+            }
+        }
+
         function calculateSalary() {
             const unitPrice = parseFloat(unitPriceInput.value) || 0;
             if (unitPrice > 0) {
@@ -211,14 +229,9 @@
                 // ── 収束計算 ──────────────────────────────────────
                 // 額面は「還元総額 - 会社負担社保」だが、
                 // 会社負担社保の雇用保険は額面に依存するため反復で収束させる
-                let salary = returnTotal * 0.85; // 初期推定値
-                for (let i = 0; i < 10; i++) {
-                    const std = getStandardRemuneration(returnTotal);
-                    const { companyTotal } = calcSyaho(std, salary);
-                    salary = returnTotal - companyTotal;
-                }
+                // 標準報酬月額は還元総額ではなく額面給与から求める
+                const { salary, std } = solveSalary(returnTotal);
 
-                const std = getStandardRemuneration(returnTotal);
                 const { workerTotal, companyTotal } = calcSyaho(std, salary);
                 const annualSalary = salary * 12;
                 const takeDome = salary - workerTotal; // 手取り
@@ -230,14 +243,7 @@
 
                 // 他社事例も同様に収束計算
                 function calcCompSalary(rate) {
-                    const compReturn = unitPrice * rate;
-                    let compSalary = compReturn * 0.85;
-                    for (let i = 0; i < 10; i++) {
-                        const compStd = getStandardRemuneration(compReturn);
-                        const { companyTotal } = calcSyaho(compStd, compSalary);
-                        compSalary = compReturn - companyTotal;
-                    }
-                    return compSalary;
+                    return solveSalary(unitPrice * rate).salary;
                 }
 
                 const comp80Salary = calcCompSalary(0.8);
