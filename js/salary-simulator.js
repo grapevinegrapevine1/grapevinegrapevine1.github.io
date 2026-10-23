@@ -12,8 +12,36 @@
                         <h1>給与シミュレーション</h1>
                         <div class="simulator-input-group">
                             <label for="unitPrice">単価（円）</label>
-                            <input type="number" id="unitPrice" placeholder="単価を入力してください" min="0">
+                            <input type="number" id="unitPrice" placeholder="単価を入力してください" min="0" max="9999999">
                         </div>
+                        <details class="simulator-options">
+                            <summary class="simulator-options-title">オプション（還元率UP）</summary>
+                            <div class="simulator-option-item">
+                                <label for="optExperience">現場経験年数<span class="simulator-option-desc">1年ごとに還元率1%UP（最大3年）</span></label>
+                                <div class="simulator-input-unit">
+                                    <input type="number" id="optExperience" value="0" min="0" max="3" step="1">
+                                    <span class="simulator-unit">年</span>
+                                </div>
+                            </div>
+                            <div class="simulator-option-item">
+                                <label for="optIncrease">増員数<span class="simulator-option-desc">1人ごとに還元率1%UP</span></label>
+                                <div class="simulator-input-unit">
+                                    <input type="number" id="optIncrease" value="0" min="0" step="1">
+                                    <span class="simulator-unit">人</span>
+                                </div>
+                            </div>
+                            <div class="simulator-option-item">
+                                <label for="optReferral">リファラル採用数<span class="simulator-option-desc">1人ごとに還元率1%UP</span></label>
+                                <div class="simulator-input-unit">
+                                    <input type="number" id="optReferral" value="0" min="0" step="1">
+                                    <span class="simulator-unit">人</span>
+                                </div>
+                                <div class="simulator-referral-allowance" id="referralAllowance"></div>
+                            </div>
+                            <div class="simulator-option-check">
+                                <label><input type="checkbox" id="optOver40">40歳以上</label>
+                            </div>
+                        </details>
                         <div class="simulator-results" id="results">
                             <div class="simulator-result-item">
                                 <span class="simulator-result-label">還元総額：</span>
@@ -29,12 +57,16 @@
                             </div>
                             <div class="simulator-result-item">
                                 <span class="simulator-result-label">年収(給与×12ヶ月)：</span>
-                                <span class="simulator-result-value simulator-annual-salary" id="annualSalary">¥0</span>
+                                <div class="simulator-result-values">
+                                    <span class="simulator-result-value simulator-annual-salary" id="annualSalary">¥0</span>
+                                    <div class="simulator-annual-allowance" id="annualAllowance"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="simulator-note">
                             ※ 会社の利益は最大10万円までとし、単価の8割を給与還元します。<br>
-                            ※ 年収は月給×12ヶ月で計算しています。<br>
+                            ※ オプションの還元率UPは、1%につき単価の1%分を会社利益から給与へ上乗せします。<br>
+                            ※ 年収は月給×12ヶ月で計算しています。リファラル手当（1人あたり20万円）は「+手当」として別途表示しています。<br>
                             ※ 本シミュレーションはあくまで概算であり、実際の支給額とは異なる場合があります。
                         </div>
                         <div class="simulator-comparison" id="comparison">
@@ -123,8 +155,34 @@
         const comp70AnnualSpan = modal.querySelector('#comp70Annual');
         const comp60AnnualSpan = modal.querySelector('#comp60Annual');
         const comp50AnnualSpan = modal.querySelector('#comp50Annual');
+        const experienceInput = modal.querySelector('#optExperience');
+        const increaseInput = modal.querySelector('#optIncrease');
+        const referralInput = modal.querySelector('#optReferral');
+        const over40Input = modal.querySelector('#optOver40');
+        const referralAllowanceDiv = modal.querySelector('#referralAllowance');
+        const annualAllowanceDiv = modal.querySelector('#annualAllowance');
 
-		unitPriceInput.addEventListener('input', calculateSalary);
+        const REFERRAL_ALLOWANCE = 200000; // リファラル手当（1人あたり）
+        const MAX_EXPERIENCE_YEARS = 3;    // 経験年数による還元率UPの上限
+        const UNIT_PRICE_MAX_DIGITS = 7;   // 単価の最大桁数（百万の位まで）
+
+		unitPriceInput.addEventListener('input', () => {
+            // 単価は百万の位（7桁）までに制限
+            if (unitPriceInput.value.replace(/\D/g, '').length > UNIT_PRICE_MAX_DIGITS) {
+                unitPriceInput.value = unitPriceInput.value.replace(/\D/g, '').slice(0, UNIT_PRICE_MAX_DIGITS);
+            }
+            calculateSalary();
+        });
+        experienceInput.addEventListener('input', calculateSalary);
+        increaseInput.addEventListener('input', calculateSalary);
+        referralInput.addEventListener('input', calculateSalary);
+        over40Input.addEventListener('change', calculateSalary);
+
+        // 入力値を0以上の整数に丸める（maxを指定した場合は上限も適用）
+        function getCount(input, max = Infinity) {
+            const value = Math.floor(parseFloat(input.value) || 0);
+            return Math.min(Math.max(value, 0), max);
+        }
 
         // 標準報酬月額テーブル（協会けんぽ 東京都 2024年度）
         // [等級, 標準報酬月額, 下限, 上限]
@@ -185,20 +243,24 @@
             return hokenTable[hokenTable.length - 1][1];
         }
 
-        function calcSyaho(standardRemuneration, actualSalary) {
+        function calcSyaho(standardRemuneration, actualSalary, isOver40) {
+            const kaigoRate = isOver40 ? 0.0081 : 0; // 介護保険は40歳以上のみ
+
             // 労働者負担
-            const kenpo  = Math.round(standardRemuneration * 0.04995);
-            const kaigo  = Math.round(standardRemuneration * 0.0091); // 40歳以上想定、未満なら0
+            const kenpo  = Math.round(standardRemuneration * 0.04925);
+            const kaigo  = Math.round(standardRemuneration * kaigoRate);
             const nenkin = Math.round(standardRemuneration * 0.0915);
-            const koyo   = Math.round(actualSalary * 0.006);
-            const workerTotal = kenpo + kaigo + nenkin + koyo;
+            const koyo   = Math.round(actualSalary * 0.005);
+            const kodomo   = Math.round(standardRemuneration * 0.00475);
+            const workerTotal = kenpo + kaigo + nenkin + koyo + kodomo;
 
             // 会社負担（健康・介護・厚生年金は同率、雇用保険のみ異なる）
-            const companyKenpo  = Math.round(standardRemuneration * 0.04995);
-            const companyKaigo  = Math.round(standardRemuneration * 0.0091);
+            const companyKenpo  = Math.round(standardRemuneration * 0.04925);
+            const companyKaigo  = Math.round(standardRemuneration * kaigoRate);
             const companyNenkin = Math.round(standardRemuneration * 0.0915);
-            const companyKoyo   = Math.round(actualSalary * 0.0095); // 会社負担は0.95%
-            const companyTotal  = companyKenpo + companyKaigo + companyNenkin + companyKoyo;
+            const companyKoyo   = Math.round(actualSalary * 0.0085); // 会社負担多め
+            const companyKodomo   = Math.round(standardRemuneration * 0.00115);
+            const companyTotal  = companyKenpo + companyKaigo + companyNenkin + companyKoyo + companyKodomo;
 
             return { workerTotal, companyTotal };
         }
@@ -206,13 +268,13 @@
         // 還元総額から額面給与を求める（額面 = 還元総額 - 会社負担社保）
         // 標準報酬月額は額面給与で決まるため、上位等級から順に整合する等級を探す
         // 等級境界付近で整合しない場合は、額面を下位等級の上限未満に抑える
-        function solveSalary(returnTotal) {
+        function solveSalary(returnTotal, isOver40) {
             for (let i = hokenTable.length - 1; i >= 0; i--) {
                 const [, std, lower, upper] = hokenTable[i];
                 // 雇用保険は額面に依存するため反復で収束させる
                 let salary = returnTotal;
                 for (let j = 0; j < 10; j++) {
-                    salary = returnTotal - calcSyaho(std, salary).companyTotal;
+                    salary = returnTotal - calcSyaho(std, salary, isOver40).companyTotal;
                 }
                 if (salary >= lower || i === 0) {
                     return { salary: Math.min(salary, upper - 1), std };
@@ -222,17 +284,38 @@
 
         function calculateSalary() {
             const unitPrice = parseFloat(unitPriceInput.value) || 0;
+            const isOver40 = over40Input.checked;
+
+            // オプション（各1%UP）
+            const experienceYears = getCount(experienceInput, MAX_EXPERIENCE_YEARS);
+            const increaseCount = getCount(increaseInput);
+            const referralCount = getCount(referralInput);
+            const rateUp = (experienceYears + increaseCount + referralCount) * 0.01;
+
+            // リファラル手当（0人の場合は非表示）
+            const referralAllowance = referralCount * REFERRAL_ALLOWANCE;
+            if (referralCount > 0) {
+                referralAllowanceDiv.textContent = `リファラル手当：1人あたり+20万円 × ${referralCount}人 = +${formatCurrency(referralAllowance)} 支給`;
+                referralAllowanceDiv.style.display = 'block';
+                annualAllowanceDiv.textContent = '+手当 ' + formatCurrency(referralAllowance);
+                annualAllowanceDiv.style.display = 'block';
+            } else {
+                referralAllowanceDiv.style.display = 'none';
+                annualAllowanceDiv.style.display = 'none';
+            }
+
             if (unitPrice > 0) {
-                const companyProfit = Math.min(unitPrice * 0.2, 100000);
+                // 還元率UP分は会社利益から差し引く（会社利益は0未満にしない）
+                const companyProfit = Math.max(Math.min(unitPrice * 0.2, 100000) - unitPrice * rateUp, 0);
                 const returnTotal = unitPrice - companyProfit;
 
                 // ── 収束計算 ──────────────────────────────────────
                 // 額面は「還元総額 - 会社負担社保」だが、
                 // 会社負担社保の雇用保険は額面に依存するため反復で収束させる
                 // 標準報酬月額は還元総額ではなく額面給与から求める
-                const { salary, std } = solveSalary(returnTotal);
+                const { salary, std } = solveSalary(returnTotal, isOver40);
 
-                const { workerTotal, companyTotal } = calcSyaho(std, salary);
+                const { workerTotal, companyTotal } = calcSyaho(std, salary, isOver40);
                 const annualSalary = salary * 12;
                 const takeDome = salary - workerTotal; // 手取り
 
@@ -243,7 +326,7 @@
 
                 // 他社事例も同様に収束計算
                 function calcCompSalary(rate) {
-                    return solveSalary(unitPrice * rate).salary;
+                    return solveSalary(unitPrice * rate, isOver40).salary;
                 }
 
                 const comp80Salary = calcCompSalary(0.8);
