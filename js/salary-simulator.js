@@ -17,7 +17,7 @@
                         <details class="simulator-options">
                             <summary class="simulator-options-title">オプション（還元率UP）</summary>
                             <div class="simulator-option-item">
-                                <label for="optExperience">現場経験年数<span class="simulator-option-desc">1年ごとに還元率1%UP（最大3年）</span></label>
+                                <label for="optExperience">現場継続年数<span class="simulator-option-desc">1年ごとに還元率1%UP（最大3年）</span></label>
                                 <div class="simulator-input-unit">
                                     <input type="number" id="optExperience" value="0" min="0" max="3" step="1">
                                     <span class="simulator-unit">年</span>
