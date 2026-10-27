@@ -294,6 +294,14 @@ main {
 	    font-weight: 600;
 	}
 
+	.panel-bonus {
+	    display: inline-block;
+	    white-space: nowrap;
+	}
+	.panel-amp {
+	    margin: 0 4px;
+	}
+
 	/* パネル説明文 */
 	.panel-description {
 	    font-size: 14px;
