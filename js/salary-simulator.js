@@ -259,7 +259,7 @@
             const companyKaigo  = Math.round(standardRemuneration * kaigoRate);
             const companyNenkin = Math.round(standardRemuneration * 0.0915);
             const companyKoyo   = Math.round(actualSalary * 0.0085); // 会社負担多め
-            const companyKodomo   = Math.round(standardRemuneration * 0.00115);
+            const companyKodomo   = Math.round(standardRemuneration * 0.0036);
             const companyTotal  = companyKenpo + companyKaigo + companyNenkin + companyKoyo + companyKodomo;
 
             return { workerTotal, companyTotal };
