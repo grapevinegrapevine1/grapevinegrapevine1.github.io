@@ -247,15 +247,15 @@
             const kaigoRate = isOver40 ? 0.0081 : 0; // 介護保険は40歳以上のみ
 
             // 労働者負担
-            const kenpo  = Math.round(standardRemuneration * 0.04925);
+            const kenpo  = Math.round(standardRemuneration * 0.0504);
             const kaigo  = Math.round(standardRemuneration * kaigoRate);
             const nenkin = Math.round(standardRemuneration * 0.0915);
             const koyo   = Math.round(actualSalary * 0.005);
-            const kodomo   = Math.round(standardRemuneration * 0.00475);
+            const kodomo   = Math.round(standardRemuneration * 0.0036);
             const workerTotal = kenpo + kaigo + nenkin + koyo + kodomo;
 
             // 会社負担（健康・介護・厚生年金は同率、雇用保険のみ異なる）
-            const companyKenpo  = Math.round(standardRemuneration * 0.04925);
+            const companyKenpo  = Math.round(standardRemuneration * 0.0504);
             const companyKaigo  = Math.round(standardRemuneration * kaigoRate);
             const companyNenkin = Math.round(standardRemuneration * 0.0915);
             const companyKoyo   = Math.round(actualSalary * 0.0085); // 会社負担多め
